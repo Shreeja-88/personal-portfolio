@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Shreeja Hebbar — Portfolio</title>
+
+  <!-- Google Fonts & Font Awesome -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css"/>
+
+  <!-- Local stylesheet -->
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <!-- NAV -->
+  <header>
+    <nav class="navbar">
+      <ul class="menu">
+        <li><a href="#home" class="nav-link">Home</a></li>
+        <li><a href="#about" class="nav-link">About</a></li>
+        <li><a href="#projects" class="nav-link">Projects</a></li>
+        <li><a href="#skills" class="nav-link">Skills</a></li>
+        <li><a href="#contact" class="nav-link">Contact</a></li>
+      </ul>
+    </nav>
+
+    <!-- HERO -->
+    <section id="home" class="hero">
+      <div class="hero-left">
+        <h3>Hello, I’m</h3>
+        <h1>Shreeja Hebbar</h1>
+        <h2>And I'm a <span class="typing"></span></h2>
+
+        <div class="cta">
+          <a class="btn" href="#about">About Me</a>
+          <a class="btn outline" href="assets/ShreejaHebbar_Resume.pdf" target="_blank" rel="noopener">Download Resume</a>
+        </div>
+
+        <div class="social-inline">
+          <a href="https://www.linkedin.com/in/shreejahebbar676/" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+          <a href="https://github.com/Shreeja-88" target="_blank" rel="noopener" aria-label="GitHub"><i class="fab fa-github"></i></a>
+          <a href="https://leetcode.com/u/ShreejaHebbar676/" target="_blank" rel="noopener" aria-label="LeetCode"><i class="fas fa-code"></i></a>
+        </div>
+      </div>
+
+      <div class="hero-right">
+        <div class="profile-wrapper">
+          <img src="assets/profile.jpg" alt="Shreeja Hebbar" class="profile-img">
+        </div>
+      </div>
+    </section>
+  </header>
+
+  <!-- ABOUT -->
+  <main>
+    <section id="about" class="section about">
+      <div class="container">
+        <h2>About Me</h2>
+        <p class="lead">
+          I am a Computer Science Engineering student with a strong foundation in Python, Java and SQL. 
+          I'm passionate about backend development and building scalable systems. Currently learning Spring Boot and system design.
+        </p>
+
+        <div class="about-grid">
+          <div class="about-item">
+            <h3>Education</h3>
+            <p>The National Institute of Engineering — B.E. Computer Science (GPA: 9.125) — Graduating 2028</p>
+          </div>
+
+          <div class="about-item">
+            <h3>Tools & Technologies</h3>
+            <p>Python · Java · SQL · Git · GitHub · VS Code · Spring Boot (learning) · AWS (basics)</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROJECTS -->
+    <section id="projects" class="section projects">
+      <div class="container">
+        <h2>Projects</h2>
+        <div class="projects-grid">
+          <article class="card">
+            <h3>Pyra — Smart AI Assistant</h3>
+            <p>Python-based virtual assistant (voice & text I/O) with search, jokes, app launches and GUI.</p>
+            <div class="card-links">
+              <a href="https://github.com/Shreeja-88/Pyra-Your-Smart-AI-Assistant-" target="_blank" rel="noopener">View Code</a>
+            </div>
+          </article>
+
+          <article class="card">
+            <h3>Online Banking System</h3>
+            <p>Java + MySQL + JavaFX banking app with authentication, transaction history and secure password handling. (Ongoing)</p>
+            <div class="card-links">
+              <a href="https://github.com/Shreeja-88" target="_blank" rel="noopener">GitHub Profile</a>
+            </div>
+          </article>
+
+          <article class="card">
+            <h3>Resume Relevance Check System</h3>
+            <p>Hackathon project: Automated resume relevance checker using Python, PyMuPDF, SQLite and Streamlit.</p>
+            <div class="card-links">
+              <a href="https://github.com/Shreeja-88/Resume-Relevance-Check-System" target="_blank" rel="noopener">View Code</a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- SKILLS -->
+    <section id="skills" class="section skills">
+      <div class="container">
+        <h2>Skills</h2>
+        <div class="skills-list">
+          <span class="skill">Python</span>
+          <span class="skill">Java</span>
+          <span class="skill">SQL</span>
+          <span class="skill">Spring Boot (learning)</span>
+          <span class="skill">Data Structures & Algorithms</span>
+          <span class="skill">OOP</span>
+          <span class="skill">Git & GitHub</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact" class="section contact">
+      <div class="container">
+        <h2>Contact</h2>
+        <p>If you'd like to reach out, email me at <a href="mailto:hebbarshree855@gmail.com">hebbarshree855@gmail.com</a> or connect on LinkedIn/GitHub.</p>
+
+        <div class="contact-links">
+          <a class="btn" href="mailto:hebbarshree855@gmail.com">Email Me</a>
+          <a class="btn outline" href="https://www.linkedin.com/in/shreejahebbar676/" target="_blank" rel="noopener">LinkedIn</a>
+          <a class="btn outline" href="https://github.com/Shreeja-88" target="_blank" rel="noopener">GitHub</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <p>© <span id="year"></span> Shreeja Hebbar — Built with ❤️</p>
+    </div>
+  </footer>
+
+  <!-- Typed.js -->
+  <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
+  <!-- Local scripts -->
+  <script src="scripts.js"></script>
+</body>
+</html>
+
+
+
+
