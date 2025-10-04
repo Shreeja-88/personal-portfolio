@@ -14,3 +14,8 @@ A modern and responsive personal portfolio template built with HTML and CSS. Thi
 
 - HTML5
 - CSS3 (Flexbox & Grid)
+
+## Live Demo
+
+[View My Portfolio](https://Shreeja-88.github.io/personal-portfolio/)
+
