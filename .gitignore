@@ -1,0 +1,21 @@
+# Node modules (if using npm for any packages)
+node_modules/
+
+# Logs
+*.log
+
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# IDE/project settings
+.vscode/
+.idea/
+
+# Build or output folders (if any)
+dist/
+build/
+
+# Temporary files
+*.tmp
+*.temp
