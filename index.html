@@ -3,20 +3,32 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Shreeja Hebbar — Portfolio</title>
+  <title>Shreeja Hebbar – Portfolio</title>
 
-  <!-- Google Fonts & Font Awesome -->
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css"/>
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Playfair+Display:wght@400;600;700&family=Manrope:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
 
   <!-- Local stylesheet -->
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
+  
+  <!-- Animated Background -->
+  <div class="bg-animation">
+    <div class="gradient-orb orb-1"></div>
+    <div class="gradient-orb orb-2"></div>
+    <div class="gradient-orb orb-3"></div>
+  </div>
+
   <!-- NAV -->
   <header>
-    <nav class="navbar">
-      <ul class="menu">
+    <nav class="navbar" id="navbar">
+      <div class="nav-brand">
+        <span class="brand-dot"></span>
+        <span class="brand-text">SH</span>
+      </div>
+      <ul class="menu" id="menu">
         <li><a href="#home" class="nav-link">Home</a></li>
         <li><a href="#about" class="nav-link">About</a></li>
         <li><a href="#projects" class="nav-link">Projects</a></li>
@@ -24,31 +36,74 @@
         <li><a href="#achievements" class="nav-link">Achievements</a></li>
         <li><a href="#contact" class="nav-link">Contact</a></li>
       </ul>
+      <div class="hamburger" id="hamburger">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
     </nav>
 
     <!-- HERO -->
     <section id="home" class="hero">
-      <div class="hero-left">
-        <h3>Hello, I’m</h3>
-        <h1>Shreeja Hebbar</h1>
-        <h2>And I'm a <span class="typing"></span></h2>
+      <div class="hero-content">
+        
+        
+        <div class="hero-left">
+          <h3 class="subtitle">Hello, I'm</h3>
+          <h1 class="main-title">Shreeja Hebbar</h1>
+          <h2 class="typing-container">
+            <span class="typing-prefix">And I'm a </span>
+            <span class="typing"></span>
+          </h2>
 
-        <div class="cta">
-          <a class="btn" href="#about">About Me</a>
-          <a class="btn outline" href="assets/ShreejaHebbar_Resume.pdf" target="_blank" rel="noopener">Download Resume</a>
+          <div class="cta">
+            <a class="btn btn-primary" href="#about">
+              <span>About Me</span>
+              <i class="fas fa-arrow-right"></i>
+            </a>
+            <a class="btn btn-outline" href="assets/ShreejaHebbar_Resume.pdf" target="_blank" rel="noopener">
+              <i class="fas fa-download"></i>
+              <span>Resume</span>
+            </a>
+          </div>
+
+          <div class="social-links">
+            <a href="https://www.linkedin.com/in/shreejahebbar676/" target="_blank" rel="noopener" aria-label="LinkedIn" class="social-icon">
+              <i class="fab fa-linkedin-in"></i>
+            </a>
+            <a href="https://github.com/Shreeja-88" target="_blank" rel="noopener" aria-label="GitHub" class="social-icon">
+              <i class="fab fa-github"></i>
+            </a>
+            <a href="https://leetcode.com/u/ShreejaHebbar676/" target="_blank" rel="noopener" aria-label="LeetCode" class="social-icon">
+              <i class="fas fa-code"></i>
+            </a>
+          </div>
         </div>
 
-        <div class="social-inline">
-          <a href="https://www.linkedin.com/in/shreejahebbar676/" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-          <a href="https://github.com/Shreeja-88" target="_blank" rel="noopener" aria-label="GitHub"><i class="fab fa-github"></i></a>
-          <a href="https://leetcode.com/u/ShreejaHebbar676/" target="_blank" rel="noopener" aria-label="LeetCode"><i class="fas fa-code"></i></a>
+        <div class="hero-right">
+          <div class="profile-container">
+            <div class="profile-glow"></div>
+            <div class="profile-wrapper">
+              <img src="assets/profile.jpg" alt="Shreeja Hebbar" class="profile-img">
+            </div>
+            <div class="floating-element element-1">
+              <i class="fas fa-code"></i>
+            </div>
+            <div class="floating-element element-2">
+              <i class="fab fa-python"></i>
+            </div>
+            <div class="floating-element element-3">
+              <i class="fab fa-java"></i>
+            </div>
+          </div>
         </div>
       </div>
 
-      <div class="hero-right">
-        <div class="profile-wrapper">
-          <img src="assets/profile.jpg" alt="Shreeja Hebbar" class="profile-img">
+      <div class="scroll-indicator">
+        <div class="mouse">
+          <div class="wheel"></div>
         </div>
+        <p>Scroll Down</p>
       </div>
     </section>
   </header>
@@ -57,21 +112,46 @@
   <main>
     <section id="about" class="section about">
       <div class="container">
-        <h2>About Me</h2>
-        <p class="lead">
-          I am a Computer Science Engineering student with a strong foundation in Python, Java, SQL, and Object-Oriented Programming. 
-          I am currently enhancing my skills in Spring Boot and system design concepts. I’m eager to contribute to real-world software projects by developing scalable backend applications.
-        </p>
+        <div class="section-header">
+          <span class="section-number">01</span>
+          <h2 class="section-title">About Me</h2>
+          <div class="section-line"></div>
+        </div>
+        
+        <div class="about-content">
+          <p class="lead">
+            I am a Computer Science Engineering student with a strong foundation in Python, Java, SQL, and Object-Oriented Programming. 
+            I am currently enhancing my skills in Spring Boot and system design concepts. I'm eager to contribute to real-world software projects by developing scalable backend applications.
+          </p>
 
-        <div class="about-grid">
-          <div class="about-item">
-            <h3>Education</h3>
-            <p>The National Institute of Engineering — B.E. Computer Science (GPA: 9.13) — Graduating 2028</p>
-          </div>
+          <div class="about-grid">
+            <div class="about-card">
+              <div class="card-icon">
+                <i class="fas fa-graduation-cap"></i>
+              </div>
+              <h3>Education</h3>
+              <p>The National Institute of Engineering</p>
+              <p class="highlight">B.E. Computer Science (GPA: 9.13)</p>
+              <p class="year">Graduating 2028</p>
+            </div>
 
-          <div class="about-item">
-            <h3>Tools & Technologies</h3>
-            <p>Python · Java · SQL · Spring Boot · Git · GitHub · VS Code · REST APIs · MySQL/PostgreSQL · Docker (Basics) · CI/CD (Basics)</p>
+            <div class="about-card">
+              <div class="card-icon">
+                <i class="fas fa-tools"></i>
+              </div>
+              <h3>Tools & Technologies</h3>
+              <div class="tech-tags">
+                <span>Python</span>
+                <span>Java</span>
+                <span>SQL</span>
+                <span>Spring Boot</span>
+                <span>Git</span>
+                <span>REST APIs</span>
+                <span>MySQL</span>
+                <span>Docker</span>
+                <span>CI/CD</span>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -79,141 +159,379 @@
 
     <!-- PROJECTS -->
     <section id="projects" class="section projects">
-  <div class="container">
-    <h2>Projects</h2>
+      <div class="container">
+        <div class="section-header">
+          <span class="section-number">02</span>
+          <h2 class="section-title">Featured Projects</h2>
+          <div class="section-line"></div>
+        </div>
 
-    <div class="projects-grid">
+        <div class="projects-grid">
+          <!-- PROJECT 1 -->
+          <article class="project-card" data-aos="fade-up">
+            <div class="project-number">01</div>
+            <div class="project-header">
+              <div class="project-icon">
+                <i class="fas fa-laptop-code"></i>
+              </div>
+              <h3>Trainer's Search App</h3>
+              <p class="project-subtitle">Full-Stack Web Application</p>
+            </div>
+            <p class="project-description">
+              Full-stack trainer management system with comprehensive CRUD operations and secure authentication.
+            </p>
+            <div class="project-details">
+              <div class="detail-item">
+                <i class="fas fa-server"></i>
+                <span>Django REST APIs + Token Auth</span>
+              </div>
+              <div class="detail-item">
+                <i class="fas fa-code"></i>
+                <span>React.js with Routing & Validation</span>
+              </div>
+              <div class="detail-item">
+                <i class="fas fa-database"></i>
+                <span>SQLite Database</span>
+              </div>
+            </div>
+            <div class="project-tags">
+              <span class="tag">Django</span>
+              <span class="tag">React.js</span>
+              <span class="tag">SQLite</span>
+              <span class="tag">REST API</span>
+            </div>
+            <div class="project-links">
+              <a href="https://github.com/Shreeja-88/Trainer-s-Search-App" target="_blank" class="project-link">
+                <i class="fab fa-github"></i>
+                <span>View Code</span>
+              </a>
+            </div>
+          </article>
 
-      <!-- PROJECT CARD -->
-      <article class="card project-card">
-        <div class="card-header">
-          <i class="fas fa-laptop-code"></i>
-          <h3>Trainer’s Search App — Full-Stack Web Application</h3>
-        </div>
-        <p>
-          Full-stack trainer management system with Add/Update/Delete/Search features.
-          <br>Backend: Django REST APIs + Token Auth  
-          <br>Frontend: React.js (Routing, Forms, Validation)  
-          <br>DB: SQLite (Development)
-        </p>
-        <div class="project-tags">
-          <span>Django</span><span>React.js</span><span>SQLite</span>
-        </div>
-        <div class="card-links">
-          <a href="https://github.com/Shreeja-88/Trainer-s-Search-App" target="_blank">View Code</a>
-        </div>
-      </article>
-      <br>
-      <!-- PROJECT CARD -->
-      <article class="card project-card">
-        <div class="card-header">
-          <i class="fas fa-robot"></i>
-          <h3>Pyra — Your Smart AI Assistant</h3>
-        </div>
-        <p>
-          Python-based virtual assistant that accepts voice & text input, providing speech output.
-          Features: Google/Wikipedia search, jokes, app launches, system commands.
-        </p>
-        <div class="project-tags">
-          <span>Python</span><span>SpeechRecognition</span><span>Tkinter</span>
-        </div>
-        <div class="card-links">
-          <a href="https://github.com/Shreeja-88/Pyra-Your-Smart-AI-Assistant-" target="_blank">View Code</a>
-        </div>
-      </article>
-      <br>
-      <!-- PROJECT CARD -->
-      <article class="card project-card">
-        <div class="card-header">
-          <i class="fas fa-route"></i>
-          <h3>TransitOptimizer — Java Route Optimization Tool</h3>
-        </div>
-        <p>
-          CLI tool that finds optimal transit routes using heuristics for travel time, fare & capacity.
-          Demonstrates strong OOP design and algorithmic problem solving.
-        </p>
-        <div class="project-tags">
-          <span>Java</span><span>OOP</span><span>CLI</span>
-        </div>
-        <div class="card-links">
-          <a href="https://github.com/Shreeja-88/TransitOptimizer-Java-based-Transit-Route-Evaluator.git" target="_blank">View Code</a>
-        </div>
-      </article>
-      <br>
-      <!-- PROJECT CARD -->
-      <article class="card project-card">
-        <div class="card-header">
-          <i class="fas fa-file-alt"></i>
-          <h3>Resume Relevance Check System</h3>
-        </div>
-        <p>
-          Hackathon project using Python, PyMuPDF, SQLite & Streamlit to evaluate resume–job match scores.
-          Focused on automation & backend integration.
-        </p>
-        <div class="project-tags">
-          <span>Python</span><span>PyMuPDF</span><span>Streamlit</span>
-        </div>
-        <div class="card-links">
-          <a href="https://github.com/Shreeja-88/Resume-Relevance-Check-System" target="_blank">View Code</a>
-        </div>
-      </article>
+          <!-- PROJECT 2 -->
+          <article class="project-card" data-aos="fade-up" data-aos-delay="100">
+            <div class="project-number">02</div>
+            <div class="project-header">
+              <div class="project-icon">
+                <i class="fas fa-robot"></i>
+              </div>
+              <h3>Pyra</h3>
+              <p class="project-subtitle">Smart AI Assistant</p>
+            </div>
+            <p class="project-description">
+              Python-based virtual assistant with voice and text input capabilities, featuring speech output and multiple integrations.
+            </p>
+            <div class="project-details">
+              <div class="detail-item">
+                <i class="fas fa-microphone"></i>
+                <span>Voice & Text Recognition</span>
+              </div>
+              <div class="detail-item">
+                <i class="fas fa-search"></i>
+                <span>Google & Wikipedia Search</span>
+              </div>
+              <div class="detail-item">
+                <i class="fas fa-terminal"></i>
+                <span>System Commands & Automation</span>
+              </div>
+            </div>
+            <div class="project-tags">
+              <span class="tag">Python</span>
+              <span class="tag">SpeechRecognition</span>
+              <span class="tag">Tkinter</span>
+              <span class="tag">AI</span>
+            </div>
+            <div class="project-links">
+              <a href="https://github.com/Shreeja-88/Pyra-Your-Smart-AI-Assistant-" target="_blank" class="project-link">
+                <i class="fab fa-github"></i>
+                <span>View Code</span>
+              </a>
+            </div>
+          </article>
 
-    </div>
-  </div>
-</section>
+          <!-- PROJECT 3 -->
+          <article class="project-card" data-aos="fade-up" data-aos-delay="200">
+            <div class="project-number">03</div>
+            <div class="project-header">
+              <div class="project-icon">
+                <i class="fas fa-route"></i>
+              </div>
+              <h3>TransitOptimizer</h3>
+              <p class="project-subtitle">Java Route Optimization Tool</p>
+            </div>
+            <p class="project-description">
+              CLI-based tool implementing heuristic algorithms to optimize transit routes based on travel time, fare, and capacity.
+            </p>
+            <div class="project-details">
+              <div class="detail-item">
+                <i class="fas fa-project-diagram"></i>
+                <span>Advanced OOP Design</span>
+              </div>
+              <div class="detail-item">
+                <i class="fas fa-brain"></i>
+                <span>Heuristic Algorithms</span>
+              </div>
+              <div class="detail-item">
+                <i class="fas fa-chart-line"></i>
+                <span>Multi-factor Optimization</span>
+              </div>
+            </div>
+            <div class="project-tags">
+              <span class="tag">Java</span>
+              <span class="tag">OOP</span>
+              <span class="tag">CLI</span>
+              <span class="tag">Algorithms</span>
+            </div>
+            <div class="project-links">
+              <a href="https://github.com/Shreeja-88/TransitOptimizer-Java-based-Transit-Route-Evaluator.git" target="_blank" class="project-link">
+                <i class="fab fa-github"></i>
+                <span>View Code</span>
+              </a>
+            </div>
+          </article>
 
+          <!-- PROJECT 4 -->
+          <article class="project-card" data-aos="fade-up" data-aos-delay="300">
+            <div class="project-number">04</div>
+            <div class="project-header">
+              <div class="project-icon">
+                <i class="fas fa-file-alt"></i>
+              </div>
+              <h3>Resume Relevance Checker</h3>
+              <p class="project-subtitle">Hackathon Project</p>
+            </div>
+            <p class="project-description">
+              Intelligent system for evaluating resume-job match scores with automated parsing and scoring algorithms.
+            </p>
+            <div class="project-details">
+              <div class="detail-item">
+                <i class="fas fa-file-pdf"></i>
+                <span>PDF Text Extraction</span>
+              </div>
+              <div class="detail-item">
+                <i class="fas fa-percentage"></i>
+                <span>Match Score Algorithm</span>
+              </div>
+              <div class="detail-item">
+                <i class="fas fa-desktop"></i>
+                <span>Streamlit UI</span>
+              </div>
+            </div>
+            <div class="project-tags">
+              <span class="tag">Python</span>
+              <span class="tag">PyMuPDF</span>
+              <span class="tag">Streamlit</span>
+              <span class="tag">SQLite</span>
+            </div>
+            <div class="project-links">
+              <a href="https://github.com/Shreeja-88/Resume-Relevance-Check-System" target="_blank" class="project-link">
+                <i class="fab fa-github"></i>
+                <span>View Code</span>
+              </a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
 
     <!-- SKILLS -->
     <section id="skills" class="section skills">
       <div class="container">
-        <h2>Technical Skills</h2>
-        <div class="skills-list">
-          <span class="skill">Python</span>
-          <span class="skill">Java</span>
-          <span class="skill">SQL</span>
-          <span class="skill">Spring Boot</span>
-          <span class="skill">REST APIs</span>
-          <span class="skill">Data Structures & Algorithms</span>
-          <span class="skill">OOP</span>
-          <span class="skill">MySQL/PostgreSQL</span>
-          <span class="skill">Git & GitHub</span>
-          <span class="skill">Docker (Basics)</span>
-          <span class="skill">CI/CD (Basics)</span>
+        <div class="section-header">
+          <span class="section-number">03</span>
+          <h2 class="section-title">Technical Arsenal</h2>
+          <div class="section-line"></div>
         </div>
-        <br>
-        <hr>
-        <br>
-        
-        <h3 class="mt">Certifications</h3>
-        <ul class="cert-list">
-          <li>Data Structures — Coursera</li>
-          <li>GfG Python Skill Up — GeeksforGeeks</li>
-          <li>Version Control with Git — Coursera</li>
-        </ul>
+
+        <div class="skills-container">
+          <div class="skill-category">
+            <h3><i class="fas fa-code"></i> Programming Languages</h3>
+            <div class="skill-list">
+              <div class="skill-item">
+                <i class="fab fa-python"></i>
+                <span>Python</span>
+              </div>
+              <div class="skill-item">
+                <i class="fab fa-java"></i>
+                <span>Java</span>
+              </div>
+              <div class="skill-item">
+                <i class="fas fa-database"></i>
+                <span>SQL</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="skill-category">
+            <h3><i class="fas fa-server"></i> Backend & APIs</h3>
+            <div class="skill-list">
+              <div class="skill-item">
+                <i class="fas fa-leaf"></i>
+                <span>Spring Boot</span>
+              </div>
+              <div class="skill-item">
+                <i class="fas fa-exchange-alt"></i>
+                <span>REST APIs</span>
+              </div>
+              <div class="skill-item">
+                <i class="fab fa-python"></i>
+                <span>Django</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="skill-category">
+            <h3><i class="fas fa-database"></i> Databases</h3>
+            <div class="skill-list">
+              <div class="skill-item">
+                <i class="fas fa-database"></i>
+                <span>MySQL</span>
+              </div>
+              <div class="skill-item">
+                <i class="fas fa-database"></i>
+                <span>PostgreSQL</span>
+              </div>
+              <div class="skill-item">
+                <i class="fas fa-table"></i>
+                <span>SQLite</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="skill-category">
+            <h3><i class="fas fa-tools"></i> Tools & DevOps</h3>
+            <div class="skill-list">
+              <div class="skill-item">
+                <i class="fab fa-git-alt"></i>
+                <span>Git & GitHub</span>
+              </div>
+              <div class="skill-item">
+                <i class="fab fa-docker"></i>
+                <span>Docker</span>
+              </div>
+              <div class="skill-item">
+                <i class="fas fa-sync"></i>
+                <span>CI/CD</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="skill-category">
+            <h3><i class="fas fa-brain"></i> Core Concepts</h3>
+            <div class="skill-list">
+              <div class="skill-item">
+                <i class="fas fa-sitemap"></i>
+                <span>Data Structures</span>
+              </div>
+              <div class="skill-item">
+                <i class="fas fa-project-diagram"></i>
+                <span>Algorithms</span>
+              </div>
+              <div class="skill-item">
+                <i class="fas fa-cube"></i>
+                <span>OOP</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="certifications">
+          <h3 class="cert-title"><i class="fas fa-certificate"></i> Certifications</h3>
+          <div class="cert-grid">
+            <div class="cert-card">
+              <i class="fas fa-check-circle"></i>
+              <p>Data Structures</p>
+              <span>Coursera</span>
+            </div>
+            <div class="cert-card">
+              <i class="fas fa-check-circle"></i>
+              <p>GfG Python Skill Up</p>
+              <span>GeeksforGeeks</span>
+            </div>
+            <div class="cert-card">
+              <i class="fas fa-check-circle"></i>
+              <p>Version Control with Git</p>
+              <span>Coursera</span>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
 
     <!-- ACHIEVEMENTS -->
     <section id="achievements" class="section achievements">
       <div class="container">
-        <h2>Achievements & Experiences</h2>
-        <ul>
-          <li><strong>Hacktoberfest 2025 – Super Contributor Badge:</strong> Submitted 6+ PRs to open-source projects.</li>
-          <li><strong>Code4EdTech Hackathon ’25 Participant:</strong> Built “Resume Relevance Check System” using Python, PyMuPDF, SQLite, and Streamlit.</li>
-        </ul>
+        <div class="section-header">
+          <span class="section-number">04</span>
+          <h2 class="section-title">Achievements</h2>
+          <div class="section-line"></div>
+        </div>
+
+        <div class="achievements-grid">
+          <div class="achievement-card">
+            <div class="achievement-icon">
+              <i class="fas fa-trophy"></i>
+            </div>
+            <h3>Hacktoberfest 2025</h3>
+            <p class="achievement-badge">Super Contributor Badge</p>
+            <p class="achievement-desc">
+              Submitted 6+ pull requests to open-source projects, contributing to the global developer community.
+            </p>
+          </div>
+
+          <div class="achievement-card">
+            <div class="achievement-icon">
+              <i class="fas fa-code"></i>
+            </div>
+            <h3>Code4EdTech Hackathon '25</h3>
+            <p class="achievement-badge">Participant</p>
+            <p class="achievement-desc">
+              Built "Resume Relevance Check System" using Python, PyMuPDF, SQLite, and Streamlit within 24 hours.
+            </p>
+          </div>
+        </div>
       </div>
     </section>
 
     <!-- CONTACT -->
     <section id="contact" class="section contact">
       <div class="container">
-        <h2>Contact</h2>
-        <p>If you'd like to reach out, email me at <a href="mailto:hebbarshree855@gmail.com">hebbarshree855@gmail.com</a> or connect on LinkedIn/GitHub.</p>
+        <div class="section-header">
+          <span class="section-number">05</span>
+          <h2 class="section-title">Let's Connect</h2>
+          <div class="section-line"></div>
+        </div>
 
-        <div class="contact-links">
-          <a class="btn" href="mailto:hebbarshree855@gmail.com">Email Me</a>
-          <a class="btn outline" href="https://www.linkedin.com/in/shreejahebbar676/" target="_blank" rel="noopener">LinkedIn</a>
-          <a class="btn outline" href="https://github.com/Shreeja-88" target="_blank" rel="noopener">GitHub</a>
+        <div class="contact-content">
+          <p class="contact-intro">
+            I'm always excited to collaborate on interesting projects or discuss opportunities. Feel free to reach out!
+          </p>
+
+          <div class="contact-grid">
+            <a href="mailto:hebbarshree855@gmail.com" class="contact-card">
+              <div class="contact-icon">
+                <i class="fas fa-envelope"></i>
+              </div>
+              <h3>Email</h3>
+              <p>hebbarshree855@gmail.com</p>
+            </a>
+
+            <a href="https://www.linkedin.com/in/shreejahebbar676/" target="_blank" rel="noopener" class="contact-card">
+              <div class="contact-icon">
+                <i class="fab fa-linkedin-in"></i>
+              </div>
+              <h3>LinkedIn</h3>
+              <p>shreejahebbar676</p>
+            </a>
+
+            <a href="https://github.com/Shreeja-88" target="_blank" rel="noopener" class="contact-card">
+              <div class="contact-icon">
+                <i class="fab fa-github"></i>
+              </div>
+              <h3>GitHub</h3>
+              <p>Shreeja-88</p>
+            </a>
+          </div>
         </div>
       </div>
     </section>
@@ -221,19 +539,21 @@
 
   <!-- FOOTER -->
   <footer class="footer">
-    <div class="container">
-      <p>© <span id="year"></span> Shreeja Hebbar</p>
+    <div class="footer-content">
+      <p>Designed & Built by Shreeja Hebbar</p>
+      <p class="copyright">© <span id="year"></span> All rights reserved</p>
+    </div>
+    <div class="footer-links">
+      <a href="https://www.linkedin.com/in/shreejahebbar676/" target="_blank" rel="noopener"><i class="fab fa-linkedin-in"></i></a>
+      <a href="https://github.com/Shreeja-88" target="_blank" rel="noopener"><i class="fab fa-github"></i></a>
+      <a href="https://leetcode.com/u/ShreejaHebbar676/" target="_blank" rel="noopener"><i class="fas fa-code"></i></a>
     </div>
   </footer>
 
-  <!-- Typed.js -->
+  <!-- Scripts -->
   <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
-  <!-- Local scripts -->
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
   <script src="scripts.js"></script>
 </body>
 </html>
-
-
-
-
-
