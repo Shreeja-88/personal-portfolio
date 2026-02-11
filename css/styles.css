@@ -558,7 +558,18 @@ body {
     width: 100%;
     height: 100%;
     object-fit: cover;  
-    display: block;
+    display: block;  
+}
+/* Background image */
+.image-frame {
+    position: absolute;
+    z-index: 1;
+}
+
+/* Image to bring to front */
+.profile-image {
+    position: relative;
+    z-index: 10;
 }
 
 
