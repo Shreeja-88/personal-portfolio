@@ -354,108 +354,153 @@ document.addEventListener('DOMContentLoaded', function() {
         createBoard();
     }
 
-        /* ------------------ Playground: Login, Games, Leaderboard, Coding Widget ------------------ */
-        const loginBtn = document.getElementById('login-btn');
-        const logoutBtn = document.getElementById('logout-btn');
-        const usernameDisplay = document.getElementById('username-display');
-        const leaderboardKey = 'pp_leaderboard_v1';
+        /* Login and leaderboard removed (server-room game uses local progress only) */
 
-        function getUser() {
-            return localStorage.getItem('pp_user') || null;
-        }
-        function setUser(name) {
-            if (name) localStorage.setItem('pp_user', name);
-            else localStorage.removeItem('pp_user');
-            usernameDisplay.textContent = getUser() || 'Guest';
-            loginBtn.style.display = getUser() ? 'none' : 'inline-block';
-            logoutBtn.style.display = getUser() ? 'inline-block' : 'none';
-        }
+        // Server Room Escape : Replace mini-games with puzzle levels
+        (function initServerRoom() {
+            const sr = document.getElementById('server-room');
+            if (!sr) return;
+            const levelTitle = document.getElementById('sr-level-title');
+            const promptEl = document.getElementById('sr-prompt');
+            const inputEl = document.getElementById('sr-input');
+            const submitBtn = document.getElementById('sr-submit');
+            const hintBtn = document.getElementById('sr-hint');
+            const feedbackEl = document.getElementById('sr-feedback');
+            const nextBtn = document.getElementById('sr-next');
+            const resetBtn = document.getElementById('sr-reset');
 
-        // simple prompt-based login (replace with proper auth later)
-        if (loginBtn) loginBtn.addEventListener('click', () => {
-            const name = prompt('Enter a display name (used for leaderboard):');
-            if (name && name.trim()) setUser(name.trim());
-        });
-        if (logoutBtn) logoutBtn.addEventListener('click', () => { setUser(null); });
-        setUser(getUser());
+            const levels = [
+                {
+                    id: 'decode-base64',
+                    title: 'Decode Base64',
+                    prompt: 'SGVsbG8gU2hyZWVqYQ==',
+                    hint: 'Decode the Base64 string to plain text (case-insensitive).',
+                    check: (ans) => {
+                        const n = normalizeAnswer(ans);
+                        return n === 'hello shreeja' || n === 'hello shreeja' || n === 'hello shreeja ';
+                    }
+                },
+                {
+                    id: 'fix-json',
+                    title: 'Fix broken JSON',
+                    prompt: '{\n  "user": "shreeja",\n  "score": 42,\n}',
+                    hint: 'Remove trailing commas to make valid JSON. What is the value of "score"? (just the number)',
+                    check: (ans) => normalizeAnswer(ans) === '42' || String(ans).trim() === '42'
+                },
+                {
+                    id: 'sql-injection',
+                    title: 'Find SQL injection flaw',
+                    prompt: "Query:\nSELECT * FROM users WHERE username = '$user' AND password = '$pass';\n\nWhat payload could bypass authentication?",
+                    hint: "Common payload: ' OR '1'='1 or OR 1=1 --",
+                    check: (ans) => /or\s*'1'\s*=\s*'1'/i.test(ans) || /or\s*1\s*=\s*1/i.test(ans) || /--/.test(ans)
+                },
+                {
+                    id: 'api-error',
+                    title: 'Identify API error',
+                    prompt: '{\n  "status": "ok",\n  "data": null,\n  "error": { "code": 200, "message": "Missing field id" }\n}',
+                    hint: 'Look for inconsistent HTTP status (200) together with an error object/code.',
+                    check: (ans) => (/200/.test(ans) || /status\s*200/i.test(ans)) && /error|missing|inconsistent/i.test(ans)
+                }
+            ];
 
-        // Leaderboard helpers
-        function loadLeaderboard() {
-            try { return JSON.parse(localStorage.getItem(leaderboardKey) || '[]'); } catch(e) { return []; }
-        }
-        function saveScore(name, score) {
-            if (!name) name = 'Guest';
-            const list = loadLeaderboard();
-            list.push({ name, score, ts: Date.now() });
-            list.sort((a,b) => b.score - a.score);
-            localStorage.setItem(leaderboardKey, JSON.stringify(list.slice(0,50)));
-            renderLeaderboard();
-        }
-        function renderLeaderboard() {
-            const el = document.getElementById('leaderboard-list');
-            if (!el) return;
-            const list = loadLeaderboard();
-            el.innerHTML = '';
-            list.slice(0,10).forEach(item => {
-                const li = document.createElement('li');
-                li.textContent = `${item.name} — ${item.score}`;
-                el.appendChild(li);
+            let current = 0;
+
+            function render() {
+                const L = levels[current];
+                levelTitle.textContent = `Level ${current+1}: ${L.title}`;
+                promptEl.textContent = L.prompt;
+                feedbackEl.textContent = '';
+                inputEl.value = '';
+                nextBtn.style.display = 'none';
+                updateProgress();
+            }
+
+            function updateProgress() {
+                const p = document.getElementById('sr-progress');
+                if (!p) return;
+                p.textContent = `(${current+1}/${levels.length})`;
+            }
+
+            function saveProgress() {
+                localStorage.setItem('serverroom_progress', JSON.stringify({ level: current }));
+            }
+
+            function loadProgress() {
+                try {
+                    const v = JSON.parse(localStorage.getItem('serverroom_progress'));
+                    if (v && typeof v.level === 'number') current = Math.min(v.level, levels.length-1);
+                } catch(e){}
+            }
+
+            submitBtn.addEventListener('click', () => {
+                const ans = inputEl.value || '';
+                const ok = levels[current].check(ans);
+                if (ok) {
+                    feedbackEl.textContent = 'Correct! Press Next to continue.';
+                    feedbackEl.style.color = 'var(--primary-color)';
+                    nextBtn.style.display = 'inline-block';
+                    // success animation + sound
+                    if (promptEl) {
+                        promptEl.classList.add('solved');
+                        setTimeout(() => promptEl.classList.remove('solved'), 1400);
+                    }
+                    try { playSuccessTone(); } catch (e) { /* ignore audio errors */ }
+                    saveProgress();
+                } else {
+                    feedbackEl.textContent = 'Incorrect — try again or ask for a hint.';
+                    feedbackEl.style.color = 'var(--text-secondary)';
+                }
             });
-        }
-        renderLeaderboard();
 
-        // Number Guessing Game
-        let secret = Math.floor(Math.random()*100)+1;
-        let attempts = 0;
-        const guessInput = document.getElementById('guess-input');
-        const guessBtn = document.getElementById('guess-btn');
-        const newGameBtn = document.getElementById('newgame-btn');
-        const guessFeedback = document.getElementById('guess-feedback');
-
-        function newGame() { secret = Math.floor(Math.random()*100)+1; attempts = 0; if (guessInput) guessInput.value=''; if (guessFeedback) guessFeedback.textContent='Good luck!'; }
-        if (guessBtn) guessBtn.addEventListener('click', () => {
-            const val = parseInt(guessInput.value,10);
-            if (!val || val<1||val>100) { guessFeedback.textContent='Enter a number between 1 and 100'; return; }
-            attempts++;
-            if (val === secret) {
-                guessFeedback.textContent = `Correct! Attempts: ${attempts}`;
-                // score: inverse of attempts, scaled
-                const score = Math.max(1, Math.floor(1000 / attempts));
-                saveScore(getUser() || 'Guest', score);
-            } else if (val < secret) guessFeedback.textContent = 'Too low';
-            else guessFeedback.textContent = 'Too high';
-        });
-        if (newGameBtn) newGameBtn.addEventListener('click', newGame);
-
-        // Quick Quiz (client-side) — small sample
-        const quizData = [
-            { q: 'Which is a JavaScript data type?', choices:['Integer','String','Float'], answer:1 },
-            { q: 'What HTML tag for script?', choices:['<script>','<js>','<code>'], answer:0 }
-        ];
-        let currentQuiz = 0; let quizScore = 0;
-        function renderQuiz() {
-            const area = document.getElementById('quiz-area');
-            const ctrl = document.getElementById('quiz-controls');
-            if (!area || !ctrl) return;
-            area.innerHTML = '';
-            ctrl.innerHTML = '';
-            const item = quizData[currentQuiz];
-            const h = document.createElement('h5'); h.textContent = item.q; area.appendChild(h);
-            item.choices.forEach((c, idx) => {
-                const btn = document.createElement('button'); btn.className='btn btn-secondary'; btn.textContent = c; btn.addEventListener('click', () => {
-                    if (idx === item.answer) quizScore += 10;
-                    currentQuiz++;
-                    if (currentQuiz >= quizData.length) {
-                        area.innerHTML = `<p>Quiz finished — score: ${quizScore}</p>`;
-                        saveScore(getUser() || 'Guest', quizScore);
-                        ctrl.innerHTML = '<button class="btn btn-secondary" id="quiz-restart">Restart Quiz</button>';
-                        document.getElementById('quiz-restart').addEventListener('click', () => { currentQuiz=0; quizScore=0; renderQuiz(); });
-                    } else renderQuiz();
-                });
-                area.appendChild(btn);
+            hintBtn.addEventListener('click', () => {
+                feedbackEl.textContent = levels[current].hint;
+                feedbackEl.style.color = 'var(--text-secondary)';
             });
-        }
-        renderQuiz();
+
+            nextBtn.addEventListener('click', () => {
+                if (current < levels.length - 1) {
+                    current++;
+                    render();
+                } else {
+                    feedbackEl.textContent = 'You escaped the server room! Well done.';
+                    feedbackEl.style.color = 'var(--primary-color)';
+                    nextBtn.style.display = 'none';
+                    localStorage.removeItem('serverroom_progress');
+                }
+            });
+
+            resetBtn.addEventListener('click', () => {
+                current = 0; render(); localStorage.removeItem('serverroom_progress');
+            });
+
+            // helper: normalize answers (remove punctuation, lowercase)
+            function normalizeAnswer(s){ return String(s || '').toLowerCase().replace(/[\W_]+/g,' ').trim(); }
+
+            // success sound using WebAudio
+            function playSuccessTone(){
+                try{
+                    const Ctx = window.AudioContext || window.webkitAudioContext;
+                    if (!Ctx) return;
+                    const ctx = new Ctx();
+                    const o = ctx.createOscillator();
+                    const g = ctx.createGain();
+                    o.type = 'sine';
+                    o.frequency.value = 880;
+                    o.connect(g);
+                    g.connect(ctx.destination);
+                    g.gain.value = 0.0001;
+                    o.start();
+                    g.gain.linearRampToValueAtTime(0.18, ctx.currentTime + 0.02);
+                    g.gain.exponentialRampToValueAtTime(0.0001, ctx.currentTime + 0.5);
+                    o.stop(ctx.currentTime + 0.52);
+                }catch(e){/* ignore */}
+            }
+
+            // allow Enter to submit
+            if (inputEl) inputEl.addEventListener('keydown', (e)=>{ if (e.key === 'Enter') submitBtn.click(); });
+
+            loadProgress(); render();
+        })();
 
         // Tabs
         document.querySelectorAll('.playground-tabs .tab').forEach(t => {
@@ -468,149 +513,7 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         });
 
-        // Coding widget: Monaco loader fallback and run in iframe
-        const editorContainer = document.getElementById('editor-container');
-        const runBtn = document.getElementById('run-code');
-        const resetCodeBtn = document.getElementById('reset-code');
-        const challengeSelect = document.getElementById('challenge-select');
-        const loadTemplateBtn = document.getElementById('load-template');
-        const iframe = document.getElementById('code-output');
-        let monacoEditor = null;
-
-        const templates = {
-            reverse: `// Return the reversed digits of n as string\nfunction solve(n){\n    return String(n).split('').reverse().join('');\n}\nconsole.log(solve(12345));`,
-            palindrome: `function solve(s){\n    const t = String(s);\n    return t === t.split('').reverse().join('');\n}\nconsole.log(solve('madam'));`,
-            validateEmail: `function solve(email){\n    return /\\S+@\\S+\\.\\S+/.test(email);\n}\nconsole.log(solve('test@example.com'));`
-        };
-
-        function writeToIframe(code) {
-            const doc = iframe.contentWindow.document;
-                if (!iframe) return;
-                const html = `<!doctype html><html><body><pre id="out"></pre><script>try{\n${code}\n}catch(e){document.getElementById('out').textContent = 'Error: '+e.message;}<\/script></body></html>`;
-                // use srcdoc to avoid cross-origin/sandbox access issues
-                try {
-                    iframe.srcdoc = html;
-                } catch (e) {
-                    // fallback to document.write when srcdoc isn't supported
-                    const doc = iframe.contentWindow.document;
-                    doc.open();
-                    doc.write(html);
-                    doc.close();
-                }
-        }
-
-        function initEditor() {
-            if (!editorContainer) return;
-            // If Monaco already loaded, create editor. Otherwise load loader and initialize.
-            const createMonaco = () => {
-                try {
-                    monacoEditor = monaco.editor.create(editorContainer, { value: templates.reverse, language: 'javascript', minimap:{enabled:false} });
-                    console.log('Monaco editor created');
-                } catch (e) {
-                    editorContainer.innerHTML = '<textarea id="fallback-editor" style="width:100%;height:100%" autofocus>' + templates.reverse + '</textarea>';
-                    console.warn('Monaco failed to initialize, using fallback textarea');
-                }
-            };
-
-            if (window.monaco) {
-                createMonaco();
-                return;
-            }
-
-            // load Monaco loader script
-            const s = document.createElement('script');
-            s.src = 'https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.38.0/min/vs/loader.min.js';
-            s.onload = () => {
-                if (typeof require !== 'undefined') {
-                    try {
-                        require.config({ paths: { 'vs': 'https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.38.0/min/vs' }});
-                        require(['vs/editor/editor.main'], () => { createMonaco(); });
-                    } catch (e) {
-                        editorContainer.innerHTML = '<textarea id="fallback-editor" style="width:100%;height:100%">'+templates.reverse+'</textarea>';
-                    }
-                } else {
-                    editorContainer.innerHTML = '<textarea id="fallback-editor" style="width:100%;height:100%">'+templates.reverse+'</textarea>';
-                }
-            };
-            s.onerror = () => { editorContainer.innerHTML = '<textarea id="fallback-editor" style="width:100%;height:100%">'+templates.reverse+'</textarea>'; };
-            document.body.appendChild(s);
-        }
-        initEditor();
-
-        // Fallback creator to ensure typing works if Monaco fails to initialize
-        function createFallbackEditor(reason) {
-            if (!editorContainer) return;
-            if (document.getElementById('fallback-editor')) return;
-            editorContainer.innerHTML = '';
-            const ta = document.createElement('textarea');
-            ta.id = 'fallback-editor';
-            ta.style.width = '100%';
-            ta.style.height = '100%';
-            ta.autofocus = true;
-            ta.value = templates.reverse;
-            editorContainer.appendChild(ta);
-            const status = document.createElement('div');
-            status.id = 'editor-status';
-            status.style.fontSize = '12px';
-            status.style.marginTop = '6px';
-            status.style.color = 'var(--muted-color, #9ca3af)';
-            status.textContent = reason ? 'Using plain editor: ' + reason : 'Using plain editor (Monaco unavailable)';
-            editorContainer.appendChild(status);
-            console.warn('Created fallback textarea editor:', reason);
-        }
-
-        // If Monaco doesn't appear within 3s, create fallback so user can type immediately
-        setTimeout(() => {
-            if (!monacoEditor && !document.getElementById('fallback-editor')) {
-                createFallbackEditor('timeout waiting for Monaco');
-            }
-        }, 3000);
-
-        // Make editor container focusable and forward clicks to Monaco or fallback textarea
-        if (editorContainer) {
-            editorContainer.setAttribute('tabindex', '0');
-            editorContainer.addEventListener('click', () => {
-                if (monacoEditor && typeof monacoEditor.focus === 'function') {
-                    try { monacoEditor.focus(); } catch (e) { console.warn('monaco.focus failed', e); }
-                } else {
-                    const fb = document.getElementById('fallback-editor');
-                    if (fb) fb.focus();
-                }
-            });
-        }
-
-        // If fallback textarea exists, allow Ctrl+Enter to run code
-        document.addEventListener('keydown', (e) => {
-            if (e.ctrlKey && e.key === 'Enter') {
-                const active = document.activeElement;
-                if (active && active.id === 'fallback-editor') {
-                    e.preventDefault();
-                    if (runBtn) runBtn.click();
-                }
-            }
-        });
-
-        if (loadTemplateBtn) loadTemplateBtn.addEventListener('click', () => {
-            const v = (challengeSelect && templates[challengeSelect.value]) ? templates[challengeSelect.value] : templates.reverse;
-            if (monacoEditor) monacoEditor.setValue(v);
-            else {
-                const fb = document.getElementById('fallback-editor');
-                if (fb) fb.value = v;
-            }
-        });
-
-        if (runBtn) runBtn.addEventListener('click', () => {
-            const code = monacoEditor ? monacoEditor.getValue() : (document.getElementById('fallback-editor') && document.getElementById('fallback-editor').value) || 'console.log("no editor")';
-            writeToIframe(code);
-        });
-
-        if (resetCodeBtn) resetCodeBtn.addEventListener('click', () => {
-            const v = templates[challengeSelect.value] || templates.reverse;
-            if (monacoEditor) monacoEditor.setValue(v); else document.getElementById('fallback-editor').value = v;
-        });
-
-        // render leaderboard initially
-        renderLeaderboard();
+        // Coding challenges removed — kept leaderboard rendering earlier.
 
     // Parallax Effect
     const heroBackground = document.querySelector('.hero-background');

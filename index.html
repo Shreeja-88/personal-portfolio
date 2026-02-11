@@ -35,6 +35,8 @@
     <div class="custom-cursor"></div>
     <div class="cursor-follower"></div>
 
+    
+
     <!-- Navigation -->
     <nav class="navbar" id="navbar">
         <div class="nav-container">
@@ -77,6 +79,7 @@
             <div class="gradient-orb orb-1"></div>
             <div class="gradient-orb orb-2"></div>
             <div class="gradient-orb orb-3"></div>
+            <div class="vibe-overlay" aria-hidden="true"></div>
         </div>
         <div class="hero-content">
             <div class="hero-text">
@@ -638,71 +641,43 @@
 
                 <!-- Social Hub & Puzzle Extras -->
                     <div class="contact-extras">
-                        <!-- Playground: Login, Games, Coding Challenges -->
-                        <div class="playground">
+                        <!-- Playground replaced by Server Room Escape puzzle -->
+                        <div class="playground server-room-playground">
                             <div class="playground-header">
-                                <div class="login-panel">
-                                    <div id="user-info">Logged in as: <strong id="username-display">Guest</strong></div>
-                                    <div class="login-actions">
-                                        <button id="login-btn" class="btn btn-secondary">Login</button>
-                                        <button id="logout-btn" class="btn btn-secondary" style="display:none">Logout</button>
+                                <div class="sr-header">
+                                    <h2 class="sr-title">Escape the Server Room!</h2>
+                                    <div class="vibe-icons" aria-hidden="true">
+                                        <!-- headphones -->
+                                        <svg class="icon icon-headphones" width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 3C7.03 3 3 7.03 3 12v6a2 2 0 0 0 2 2h1a1 1 0 0 0 1-1v-5a1 1 0 0 0-1-1H6v-1a6 6 0 0 1 12 0v1h-1a1 1 0 0 0-1 1v5a1 1 0 0 0 1 1h1a2 2 0 0 0 2-2v-6c0-4.97-4.03-9-9-9z" fill="currentColor"/></svg>
+                                        <!-- coffee -->
+                                        <svg class="icon icon-coffee" width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M18 8h1a3 3 0 0 1 0 6h-1v1a3 3 0 0 1-3 3H6a3 3 0 0 1-3-3V8h15z" stroke="currentColor" stroke-width="1.2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                                        <!-- laptop -->
+                                        <svg class="icon icon-laptop" width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3 6h18v10H3z" stroke="currentColor" stroke-width="1.2" fill="none" stroke-linecap="round" stroke-linejoin="round"/><path d="M2 18h20" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>
                                     </div>
                                 </div>
                             </div>
 
-                            <div class="playground-tabs">
-                                <button class="tab active" data-tab="games">Mini Games</button>
-                                <button class="tab" data-tab="coding">Coding Challenges</button>
+                            <div class="server-room" id="server-room">
+                                
+                                <p class="muted">You are locked in a server room. Solve backend puzzles to escape. Complete all 4 levels.</p>
+                                <div class="sr-status">
+                                    <strong id="sr-level-title">Level 1: Decode Base64</strong>
+                                    <span id="sr-progress" style="margin-left:8px; color:var(--text-secondary)"></span>
+                                </div>
+                                <pre id="sr-prompt" class="sr-prompt" aria-live="polite"></pre>
+                                <div class="sr-controls">
+                                    <input id="sr-input" type="text" placeholder="Type your answer here" />
+                                    <button id="sr-submit" class="btn btn-primary">Submit</button>
+                                    <button id="sr-hint" class="btn btn-secondary">Hint</button>
+                                </div>
+                                <p id="sr-feedback" class="muted" aria-live="polite"></p>
+                                <div class="sr-actions" style="margin-top:10px">
+                                    <button id="sr-next" class="btn btn-primary" style="display:none">Next Level</button>
+                                    <button id="sr-reset" class="btn btn-secondary">Reset Game</button>
+                                </div>
+                                <!-- leaderboard removed -->
                             </div>
-
-                            <div class="tab-content" id="games-tab">
-                                <div class="game-section">
-                                    <h4>Number Guessing</h4>
-                                    <p>Guess a number between 1 and 100 — fewer attempts gives higher score.</p>
-                                    <div class="game-controls">
-                                        <input type="number" id="guess-input" placeholder="Your guess" min="1" max="100">
-                                        <button id="guess-btn" class="btn btn-primary">Guess</button>
-                                        <button id="newgame-btn" class="btn btn-secondary">New Game</button>
-                                    </div>
-                                    <p id="guess-feedback" class="muted"></p>
-                                </div>
-
-                                <hr>
-
-                                <div class="game-section">
-                                    <h4>Quick Quiz</h4>
-                                    <p>Small multiple-choice quiz. Score persists to leaderboard.</p>
-                                    <div id="quiz-area"></div>
-                                    <div id="quiz-controls"></div>
-                                </div>
-
-                                <hr>
-
-                                <div class="leaderboard">
-                                    <h4>Leaderboard</h4>
-                                    <ol id="leaderboard-list"></ol>
-                                </div>
-                            </div>
-
-                            <div class="tab-content" id="coding-tab" style="display:none">
-                                <h4>Coding Challenge</h4>
-                                <p>Choose a problem, write JS, Run to see output. Uses an iframe sandbox.</p>
-                                <div class="challenge-picker">
-                                    <select id="challenge-select">
-                                        <option value="reverse">Reverse a number</option>
-                                        <option value="palindrome">Check palindrome</option>
-                                        <option value="validateEmail">Validate email</option>
-                                    </select>
-                                    <button id="load-template" class="btn btn-secondary">Load Template</button>
-                                </div>
-                                <div id="editor-container" style="height:300px;border-radius:8px;overflow:hidden;margin-top:12px"></div>
-                                <div class="code-controls" style="margin-top:8px">
-                                    <button id="run-code" class="btn btn-primary">Run</button>
-                                    <button id="reset-code" class="btn btn-secondary">Reset</button>
-                                </div>
-                                <h5>Output</h5>
-                                <iframe id="code-output" sandbox="allow-scripts" style="width:100%;height:160px;border:1px solid var(--border-color);border-radius:8px"></iframe>
-                            </div>
+                            
                         </div>
                     </div>
 

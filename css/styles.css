@@ -348,6 +348,51 @@ body {
     66% { transform: translate(-50px, 50px); }
 }
 
+/* Vibe overlay: subtle animated gradient + shapes to add ambience */
+.vibe-overlay {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+    background: radial-gradient(ellipse at 10% 20%, rgba(246,195,176,0.06), transparent 15%),
+                radial-gradient(ellipse at 90% 80%, rgba(241,159,176,0.06), transparent 12%);
+    mix-blend-mode: screen;
+    animation: vibeShift 12s linear infinite;
+}
+
+@keyframes vibeShift {
+    0% { transform: scale(1) translateY(0); opacity: 0.95; }
+    50% { transform: scale(1.03) translateY(-6px); opacity: 1; }
+    100% { transform: scale(1) translateY(0); opacity: 0.95; }
+}
+
+/* decorative bars at bottom-left for subtle 'vibe' */
+.vibe-overlay::before {
+    content: '';
+    position: absolute;
+    left: 20px;
+    bottom: 20px;
+    width: 220px;
+    height: 6px;
+    background: linear-gradient(90deg, rgba(126,109,149,0.7), rgba(241,159,176,0.6));
+    filter: blur(6px);
+    opacity: 0.55;
+}
+
+.vibe-overlay::after {
+    content: '';
+    position: absolute;
+    right: 40px;
+    top: 30%;
+    width: 6px;
+    height: 140px;
+    background: linear-gradient(180deg, rgba(241,159,176,0.4), rgba(126,109,149,0.4));
+    filter: blur(8px);
+    opacity: 0.35;
+}
+
+/* Floating vibe icons removed per user preference */
+
 .hero-content {
     max-width: var(--container-width);
     margin: 0 auto;
@@ -1211,8 +1256,26 @@ body {
 /* Playground */
 .playground { background: var(--bg-color); padding: 18px; border-radius: 14px; box-shadow: var(--shadow-lg); }
 .playground-header { display:flex; justify-content:space-between; align-items:center; margin-bottom:10px; }
-.login-panel { display:flex; align-items:center; gap:12px; }
-#user-info { color:var(--text-primary); font-weight:600; }
+.sr-header { display:flex; align-items:center; justify-content:space-between; gap:12px; }
+.sr-title { font-family: var(--font-display); font-size:20px; letter-spacing:0.6px; color:var(--primary-color); margin:0; }
+.vibe-icons { display:flex; gap:10px; align-items:center; }
+.icon { opacity:0.9; color:var(--text-secondary); transition: transform 0.35s ease, color 0.35s ease; }
+.icon:hover { transform: translateY(-4px) scale(1.05); color:var(--accent-color); }
+
+/* subtle pulsing glow around title */
+.sr-title { position:relative; }
+.sr-title::after {
+    content: '';
+    position: absolute;
+    left: -6px; right: -6px; top: -6px; bottom: -6px;
+    border-radius: 8px;
+    background: radial-gradient(closest-side, rgba(241,159,176,0.06), transparent 60%);
+    z-index: -1;
+    filter: blur(6px);
+    opacity: 0.9;
+    animation: titleGlow 4s ease-in-out infinite;
+}
+@keyframes titleGlow { 0% { transform: scale(1); opacity:0.7 } 50% { transform: scale(1.02); opacity:1 } 100% { transform: scale(1); opacity:0.7 } }
 .playground-tabs { display:flex; gap:8px; margin-bottom:12px; }
 .playground-tabs .tab { padding:8px 12px; border-radius:10px; background:transparent; border:1px solid var(--border-color); cursor:pointer; }
 .playground-tabs .tab.active { background: linear-gradient(90deg, var(--accent-color), var(--secondary-color)); color:white; border:none; }
@@ -1224,27 +1287,51 @@ body {
 .leaderboard { margin-top:12px; }
 #leaderboard-list { list-style:decimal inside; max-height:220px; overflow:auto; }
 
+/* Server Room styles */
+.server-room { padding: 12px 6px; border-radius: 10px; background: linear-gradient(180deg, rgba(0,0,0,0.03), rgba(255,255,255,0.02)); }
+.sr-prompt { background: var(--bg-secondary); padding: 12px; border-radius: 8px; max-height: 220px; overflow:auto; color: var(--text-primary); }
+.sr-controls { display:flex; gap:8px; margin-top:10px; }
+.sr-controls input { flex:1; padding:10px; border-radius:8px; border:1px solid var(--border-color); }
+.sr-actions { display:flex; gap:8px; }
+.sr-status { display:flex; align-items:center; gap:8px; margin-bottom:8px; }
+
+/* success animation for solved prompt */
+.sr-prompt.solved {
+    animation: srPop 700ms cubic-bezier(.2,.9,.3,1);
+    box-shadow: 0 8px 30px rgba(126,109,149,0.14), inset 0 0 30px rgba(241,159,176,0.04);
+    border: 1px solid rgba(126,109,149,0.12);
+}
+
+@keyframes srPop {
+    0% { transform: scale(1); filter: brightness(1); }
+    40% { transform: scale(1.03); filter: brightness(1.06); }
+    100% { transform: scale(1); filter: brightness(1); }
+}
+
 .challenge-picker { display:flex; gap:8px; align-items:center; }
-#editor-container { background:var(--bg-secondary); }
+#editor-container { background:var(--bg-secondary); color:var(--text-primary); border-radius:8px; padding:8px; }
 .code-controls { display:flex; gap:8px; }
 .social-hub {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
     gap: 14px;
-    background: var(--bg-color);
-    padding: 16px;
+    background: transparent;
+    padding: 12px;
     border-radius: 12px;
-    box-shadow: var(--shadow-md);
+    box-shadow: none;
 }
 .social-card {
-    background: linear-gradient(180deg, rgba(90,52,99,0.06), rgba(241,159,176,0.03));
-    padding: 14px;
-    border-radius: 10px;
+    position: relative;
+    padding: 18px;
+    border-radius: 12px;
     display: flex;
     align-items: center;
     justify-content: center;
     text-align: center;
-    transition: var(--transition-base);
+    transition: transform 0.35s cubic-bezier(.2,.8,.2,1), box-shadow 0.35s ease;
+    overflow: hidden;
+    background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(0,0,0,0.02));
+    border: 1px solid rgba(255,255,255,0.03);
 }
 .social-card a {
     display: flex;
@@ -1264,8 +1351,46 @@ body {
     font-weight: 600;
 }
 .social-card:hover {
-    transform: translateY(-6px);
-    box-shadow: var(--shadow-lg);
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: 0 10px 30px rgba(16,12,26,0.35);
+}
+
+/* Ensure headings and labels in playground are high-contrast */
+.playground h4, .playground p, .playground label, .playground .challenge-picker, .playground .playground-header {
+    color: var(--text-primary);
+}
+
+/* Make select and inputs visible in dark theme */
+.playground select, .playground input, .playground textarea {
+    color: var(--text-primary);
+    background: var(--bg-color);
+    border: 1px solid var(--border-color);
+}
+
+/* Tweak active tab contrast */
+.playground-tabs .tab {
+    color: var(--text-secondary);
+}
+.playground-tabs .tab.active { color: #fff; }
+
+/* Small responsive polish for editor area */
+@media (max-width: 800px) {
+    .social-hub { grid-template-columns: repeat(2, 1fr); }
+    #editor-container { height: 220px; }
+}
+
+/* Fallback textarea styling inside editor container */
+#editor-container textarea#fallback-editor {
+    width: 100%;
+    height: 100%;
+    resize: none;
+    border: none;
+    background: transparent;
+    color: var(--text-primary);
+    font-family: var(--font-mono);
+    font-size: 14px;
+    padding: 12px;
+    outline: none;
 }
 
 /* Puzzle Reveal */
