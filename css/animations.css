@@ -106,8 +106,7 @@
     left: 0;
     right: 0;
     bottom: 0;
-    background: linear-gradient(135deg, rgba(99, 102, 241, 0.3), rgba(236, 72, 153, 0.3));
-    border-radius: inherit;
+    background: linear-gradient(135deg, rgba(90,52,99,0.18), rgba(241,159,176,0.16));
     opacity: 0;
     transition: opacity 0.3s ease;
     z-index: -1;
@@ -120,39 +119,27 @@
 
 /* Text Animations */
 @keyframes shimmer {
-    0% {
-        background-position: -1000px 0;
-    }
-    100% {
-        background-position: 1000px 0;
-    }
+    0% { background-position: -1000px 0; }
+    100% { background-position: 1000px 0; }
 }
 
 .shimmer-text {
-    background: linear-gradient(90deg, 
-        var(--text-primary) 0%, 
-        var(--primary-color) 50%, 
-        var(--text-primary) 100%);
+    background: linear-gradient(90deg, var(--text-primary) 0%, var(--primary-color) 50%, var(--text-primary) 100%);
     background-size: 2000px 100%;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
     animation: shimmer 3s linear infinite;
+    box-shadow: 0 0 5px rgba(90,52,99,0.12);
 }
 
 /* Loading Animation */
 @keyframes pulse {
-    0%, 100% {
-        opacity: 1;
-    }
-    50% {
-        opacity: 0.5;
-    }
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.5; }
 }
 
-.pulse {
-    animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
-}
+.pulse { animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite; }
 
 /* Ripple Effect */
 @keyframes ripple {
@@ -174,7 +161,7 @@
     left: 50%;
     width: 20px;
     height: 20px;
-    background: rgba(99, 102, 241, 0.5);
+    background: rgba(90,52,99,0.36);
     border-radius: 50%;
     transform: translate(-50%, -50%) scale(0);
     pointer-events: none;
@@ -198,7 +185,7 @@
 }
 
 .animated-gradient {
-    background: linear-gradient(-45deg, #667eea, #764ba2, #f093fb, #f5576c);
+    background: linear-gradient(-45deg, var(--accent-color), var(--secondary-color), var(--primary-color), var(--primary-dark));
     background-size: 400% 400%;
     animation: gradient 15s ease infinite;
 }
@@ -334,10 +321,10 @@
 /* Glow Pulse */
 @keyframes glowPulse {
     0%, 100% {
-        box-shadow: 0 0 5px rgba(99, 102, 241, 0.5);
+        box-shadow: 0 0 5px rgba(90,52,99,0.36);
     }
     50% {
-        box-shadow: 0 0 20px rgba(99, 102, 241, 0.8);
+        box-shadow: 0 0 20px rgba(90,52,99,0.6);
     }
 }
 

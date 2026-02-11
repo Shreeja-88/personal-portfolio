@@ -39,7 +39,18 @@
     <nav class="navbar" id="navbar">
         <div class="nav-container">
             <a href="#home" class="nav-logo">
-                <span class="logo-accent">S</span>H
+                <!-- wordmark + emblem -->
+                <svg width="36" height="36" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                    <defs>
+                        <linearGradient id="g1" x1="0%" x2="100%" y1="0%" y2="100%">
+                            <stop offset="0%" stop-color="var(--accent-color)" />
+                            <stop offset="100%" stop-color="var(--secondary-color)" />
+                        </linearGradient>
+                    </defs>
+                    <circle cx="50" cy="50" r="48" fill="url(#g1)" />
+                    <path d="M30 65 C40 75, 60 75, 70 65" stroke="white" stroke-width="6" fill="none" stroke-linecap="round" />
+                </svg>
+                <span class="nav-brand">Shreeja Hebbar</span>
             </a>
             <div class="nav-menu" id="nav-menu">
                 <a href="#home" class="nav-link active">Home</a>
@@ -590,7 +601,7 @@
                                 <a href="mailto:itshreeja@gmail.com">itshreeja@gmail.com</a>
                             </div>
                         </div>
-                        <div class="contact-item">
+                        <!--<div class="contact-item">
                             <div class="contact-icon">
                                 <i class="fas fa-phone"></i>
                             </div>
@@ -598,7 +609,7 @@
                                 <h4>Phone</h4>
                                 <a href="tel:+919448546093">+91 9448546093</a>
                             </div>
-                        </div>
+                        </div>-->
                         <div class="contact-item">
                             <div class="contact-icon">
                                 <i class="fas fa-map-marker-alt"></i>
@@ -624,28 +635,77 @@
                         </a>
                     </div>
                 </div>
-                <form class="contact-form" id="contact-form">
-                    <div class="form-group">
-                        <input type="text" id="name" name="name" required>
-                        <label for="name">Your Name</label>
+
+                <!-- Social Hub & Puzzle Extras -->
+                    <div class="contact-extras">
+                        <!-- Playground: Login, Games, Coding Challenges -->
+                        <div class="playground">
+                            <div class="playground-header">
+                                <div class="login-panel">
+                                    <div id="user-info">Logged in as: <strong id="username-display">Guest</strong></div>
+                                    <div class="login-actions">
+                                        <button id="login-btn" class="btn btn-secondary">Login</button>
+                                        <button id="logout-btn" class="btn btn-secondary" style="display:none">Logout</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="playground-tabs">
+                                <button class="tab active" data-tab="games">Mini Games</button>
+                                <button class="tab" data-tab="coding">Coding Challenges</button>
+                            </div>
+
+                            <div class="tab-content" id="games-tab">
+                                <div class="game-section">
+                                    <h4>Number Guessing</h4>
+                                    <p>Guess a number between 1 and 100 — fewer attempts gives higher score.</p>
+                                    <div class="game-controls">
+                                        <input type="number" id="guess-input" placeholder="Your guess" min="1" max="100">
+                                        <button id="guess-btn" class="btn btn-primary">Guess</button>
+                                        <button id="newgame-btn" class="btn btn-secondary">New Game</button>
+                                    </div>
+                                    <p id="guess-feedback" class="muted"></p>
+                                </div>
+
+                                <hr>
+
+                                <div class="game-section">
+                                    <h4>Quick Quiz</h4>
+                                    <p>Small multiple-choice quiz. Score persists to leaderboard.</p>
+                                    <div id="quiz-area"></div>
+                                    <div id="quiz-controls"></div>
+                                </div>
+
+                                <hr>
+
+                                <div class="leaderboard">
+                                    <h4>Leaderboard</h4>
+                                    <ol id="leaderboard-list"></ol>
+                                </div>
+                            </div>
+
+                            <div class="tab-content" id="coding-tab" style="display:none">
+                                <h4>Coding Challenge</h4>
+                                <p>Choose a problem, write JS, Run to see output. Uses an iframe sandbox.</p>
+                                <div class="challenge-picker">
+                                    <select id="challenge-select">
+                                        <option value="reverse">Reverse a number</option>
+                                        <option value="palindrome">Check palindrome</option>
+                                        <option value="validateEmail">Validate email</option>
+                                    </select>
+                                    <button id="load-template" class="btn btn-secondary">Load Template</button>
+                                </div>
+                                <div id="editor-container" style="height:300px;border-radius:8px;overflow:hidden;margin-top:12px"></div>
+                                <div class="code-controls" style="margin-top:8px">
+                                    <button id="run-code" class="btn btn-primary">Run</button>
+                                    <button id="reset-code" class="btn btn-secondary">Reset</button>
+                                </div>
+                                <h5>Output</h5>
+                                <iframe id="code-output" sandbox="allow-scripts" style="width:100%;height:160px;border:1px solid var(--border-color);border-radius:8px"></iframe>
+                            </div>
+                        </div>
                     </div>
-                    <div class="form-group">
-                        <input type="email" id="email" name="email" required>
-                        <label for="email">Your Email</label>
-                    </div>
-                    <div class="form-group">
-                        <input type="text" id="subject" name="subject" required>
-                        <label for="subject">Subject</label>
-                    </div>
-                    <div class="form-group">
-                        <textarea id="message" name="message" rows="5" required></textarea>
-                        <label for="message">Your Message</label>
-                    </div>
-                    <button type="submit" class="btn btn-primary">
-                        <span>Send Message</span>
-                        <i class="fas fa-paper-plane"></i>
-                    </button>
-                </form>
+
             </div>
         </div>
     </section>

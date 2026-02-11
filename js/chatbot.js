@@ -120,11 +120,11 @@ document.addEventListener('DOMContentLoaded', function() {
         // Skills inquiries
         if (message.includes('skill') || message.includes('technology') || message.includes('tech stack')) {
             let response = `Shreeja has expertise in:\n\n`;
-            response += `💻 **Programming:** ${portfolioData.skills.programming.join(', ')}\n\n`;
-            response += `🔧 **Backend:** ${portfolioData.skills.backend.join(', ')}\n\n`;
-            response += `🎨 **Frontend:** ${portfolioData.skills.frontend.join(', ')}\n\n`;
-            response += `🗄️ **Databases:** ${portfolioData.skills.databases.join(', ')}\n\n`;
-            response += `🤖 **AI/ML:** ${portfolioData.skills.ai.join(', ')}`;
+            response += `**Programming:** ${portfolioData.skills.programming.join(', ')}\n\n`;
+            response += `**Backend:** ${portfolioData.skills.backend.join(', ')}\n\n`;
+            response += `**Frontend:** ${portfolioData.skills.frontend.join(', ')}\n\n`;
+            response += `**Databases:** ${portfolioData.skills.databases.join(', ')}\n\n`;
+            response += `**AI/ML:** ${portfolioData.skills.ai.join(', ')}`;
             return response;
         }
 
@@ -180,7 +180,7 @@ document.addEventListener('DOMContentLoaded', function() {
         if (message.includes('achievement') || message.includes('hackathon') || message.includes('award')) {
             let response = `Shreeja's notable achievements include:\n\n`;
             portfolioData.achievements.forEach((achievement, index) => {
-                response += `🏆 ${achievement}\n\n`;
+                response += `${achievement}\n\n`;
             });
             return response;
         }
@@ -197,7 +197,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
         // Contact inquiries
         if (message.includes('contact') || message.includes('email') || message.includes('reach') || message.includes('get in touch')) {
-            return `📬 **Get in touch with Shreeja:**\n\n📧 Email: ${portfolioData.contact.email}\n📱 Phone: ${portfolioData.contact.phone}\n\n🔗 **Social Links:**\nLinkedIn: ${portfolioData.contact.linkedin}\nGitHub: ${portfolioData.contact.github}\nLeetCode: ${portfolioData.contact.leetcode}\nTwitter: ${portfolioData.contact.twitter}\n\nFeel free to reach out for collaborations or opportunities!`;
+            return `**Get in touch with Shreeja:**\n\n📧 Email: ${portfolioData.contact.email}\n\n🔗 **Social Links:**\nLinkedIn: ${portfolioData.contact.linkedin}\nGitHub: ${portfolioData.contact.github}\nLeetCode: ${portfolioData.contact.leetcode}\nTwitter: ${portfolioData.contact.twitter}\n\nFeel free to reach out for collaborations or opportunities!`;
         }
 
         // Experience level
@@ -207,12 +207,12 @@ document.addEventListener('DOMContentLoaded', function() {
 
         // Work preference
         if (message.includes('looking for') || message.includes('seeking') || message.includes('opportunity')) {
-            return `Shreeja is looking for:\n✅ SDE Intern positions\n✅ Full-stack development roles\n✅ Backend engineering opportunities\n✅ AI/ML related projects\n✅ Collaborative team environments\n\nShe's passionate about building scalable solutions and continuously learning!`;
+            return `Shreeja is looking for:\n1) SDE Intern positions\n2) Full-stack development roles\n3) Backend engineering opportunities\n✅ AI/ML related projects\n✅ Collaborative team environments\n\nShe's passionate about building scalable solutions and continuously learning!`;
         }
 
         // Strengths
         if (message.includes('strength') || message.includes('best at') || message.includes('good at')) {
-            return `Shreeja's key strengths include:\n💪 Full-stack development (Django + React)\n💪 Problem-solving and algorithmic thinking\n💪 Building RESTful APIs\n💪 UI/UX implementation\n💪 Quick learning and adaptability\n💪 Team collaboration (hackathons)\n💪 Open-source contribution\n\nHer 9.13 GPA and multiple successful projects demonstrate her technical excellence!`;
+            return `Shreeja's key strengths include:\n1) Full-stack development (Django + React)\n2) Problem-solving and algorithmic thinking\n3) Building RESTful APIs\n4) UI/UX implementation\n5) Quick learning and adaptability\n6) Team collaboration (hackathons)\n7) Open-source contribution\n\nHer 9.13 GPA and multiple successful projects demonstrate her technical excellence!`;
         }
 
         // Resume
