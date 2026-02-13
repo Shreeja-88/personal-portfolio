@@ -335,12 +335,15 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     // ===================================
-    // Welcome Message Enhancement
+    // Welcome message when user opens chatbot
     // ===================================
-    setTimeout(() => {
-        if (chatbotMessages.children.length === 1) {
-            addMessage(`I can answer questions about:\n• Programming skills\n• Project details\n• Hackathon achievements\n• Contact information\n\nTry asking something specific!`, false);
+    chatbotToggle.addEventListener('click', () => {
+        // show tip only when window is first opened and only initial bot greeting exists
+        if (chatbotWindow.classList.contains('active') && chatbotMessages.children.length === 1) {
+            setTimeout(() => {
+                addMessage(`I can answer questions about:\n• Programming skills\n• Project details\n• Hackathon achievements\n• Contact information\n\nTry asking something specific!`, false);
+            }, 500);
         }
-    }, 3000);
+    });
 
 });

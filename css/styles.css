@@ -702,6 +702,55 @@ body {
     background: var(--bg-secondary);
 }
 
+/* Creative work showcase */
+.creative-work {
+    padding: var(--section-padding) 20px;
+    background: var(--bg-color);
+}
+
+.creative-content {
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+    color: var(--text-secondary);
+    background: var(--bg-secondary);
+    padding: 40px 30px;
+    border-radius: 15px;
+    box-shadow: var(--shadow-md);
+}
+
+/* ensure chatbot window stays hidden until toggled */
+.chatbot-window {
+    display: none !important;
+}
+
+.chatbot-window.active {
+    display: flex !important;
+}
+
+.creative-role {
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--primary-color);
+    margin-bottom: 10px;
+}
+
+.creative-project {
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 15px;
+}
+
+.creative-link a {
+    color: var(--primary-color);
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.creative-link a:hover {
+    text-decoration: underline;
+}
+
 .about-content {
     display: grid;
     grid-template-columns: 1.5fr 1fr;
@@ -1629,13 +1678,16 @@ body {
     :root {
         --section-padding: 80px;
     }
+    .hero {
+        padding: 80px 20px 60px;
+    }
     .hero-content {
         grid-template-columns: 1fr;
         text-align: center;
     }
     .hero-image {
         max-width: 400px;
-        margin: 0 auto;
+        margin: 40px auto 0;
     }
     .hero-buttons {
         justify-content: center;
@@ -1654,6 +1706,9 @@ body {
 @media (max-width: 768px) {
     :root {
         --section-padding: 60px;
+    }
+    .hero {
+        padding: 60px 15px 40px;
     }
     .nav-menu {
         position: fixed;
@@ -1689,6 +1744,7 @@ body {
         width: 100%;
         max-width: 300px;
         justify-content: center;
+        padding: 12px 24px;
     }
     .about-stats {
         grid-template-columns: repeat(2, 1fr);
@@ -1717,11 +1773,31 @@ body {
 }
 
 @media (max-width: 480px) {
+    .hero {
+        padding: 40px 10px 30px;
+    }
     .hero-name {
         font-size: 40px;
     }
     .hero-title {
         font-size: 20px;
+    }
+    .hero-greeting {
+        font-size: 16px;
+    }
+    .hero-description {
+        font-size: 16px;
+        max-width: none;
+    }
+    .hero-buttons .btn {
+        padding: 12px 20px;
+    }
+    .hero-socials {
+        gap: 10px;
+    }
+    .hero-image .image-frame {
+        width: 250px;
+        height: 250px;
     }
     .section-title {
         font-size: 32px;
