@@ -42,7 +42,7 @@ document.addEventListener('DOMContentLoaded', function() {
         education: {
             institution: "The National Institute of Engineering",
             degree: "B.E. in Computer Science",
-            gpa: "9.13",
+            gpa: "9.29",
             graduation: "2028"
         },
         contact: {
@@ -64,40 +64,41 @@ document.addEventListener('DOMContentLoaded', function() {
         },
         projects: [
             {
+                name: "GitHub Portfolio Analyzer",
+                tech: ["Python", "GitHub API", "Data Analysis"],
+                description: "AI-inspired developer evaluation tool analyzing GitHub profiles using recruiter-style metrics",
+                date: "Feb 2026",
+                github: "https://github.com/Shreeja-88/github-portfolio-analyzer.git"
+            },
+            {
+                name: "Empathy Encryption Engine",
+                tech: ["Node.js", "Express.js", "JavaScript"],
+                description: "Full-stack security tool with entropy-based password strength evaluation and real-time feedback",
+                date: "Feb 2026",
+                github: "https://github.com/Shreeja-88/empathy-encryption-engine.git"
+            },
+            {
                 name: "Trainer's Search App",
-                tech: ["Django REST Framework", "React.js", "SQLite"],
-                description: "Full-stack trainer management system with CRUD operations and token-based authentication",
+                tech: ["Django REST Framework", "React.js", "SQL"],
+                description: "Full-stack web application with RESTful APIs for trainer management and dynamic search",
                 date: "Nov 2025",
                 github: "https://github.com/Shreeja-88/Trainer-s-Search-App.git"
             },
             {
-                name: "Scriptly",
+                name: "Scriptly — Web IDE",
                 tech: ["HTML5", "CSS3", "JavaScript"],
-                description: "Interactive web-based IDE with live HTML/CSS/JS preview",
+                description: "Browser-based interactive code editor with real-time preview and live editing features",
                 date: "Jan 2026",
-                github: "https://github.com/Shreeja-88/scriptly"
-            },
-            {
-                name: "Pyra - Smart AI Assistant",
-                tech: ["Python", "NLP", "Tkinter"],
-                description: "Python-based virtual assistant with voice and text capabilities",
-                date: "Aug 2025",
-                github: "https://github.com/Shreeja-88/Pyra-Your-Smart-AI-Assistant-"
-            },
-            {
-                name: "TransitOptimizer",
-                tech: ["Java", "OOP", "CLI"],
-                description: "Java CLI tool for optimal transit route selection",
-                date: "Oct 2025",
-                github: "https://github.com/Shreeja-88/TransitOptimizer-Java-based-Transit-Route-Evaluator.git"
+                github: "https://github.com/Shreeja-88/scriptly.git"
             }
         ],
         achievements: [
-            "Hacktoberfest 2025 - Super Contributor (6+ accepted PRs)",
-            "Global Sustainability Challenge - Regional Finalist (South Asia)",
-            "Flipkart Girls Wanna Code 7.0 - Shortlisted to QA Round",
-            "Code4EdTech Hackathon 2025 - Participant",
-            "Multiple hackathon participations (Kuberns AI, Code Relay 4.0, Tech Ideathon 2026)"
+            "UnsaidTalks Empathy Encryption Hackathon — 🥇 Top 1 Rank (Feb 2026)",
+            "UnsaidTalks GitHub Analyzer Hackathon — Top 10 Rank (Feb 2026)",
+            "Flipkart Girls Wanna Code 7.0 — Shortlisted to QA Round (Feb 2026)",
+            "Global Sustainability Challenge — South Asia Regional Finalist (Dec 2025 - Feb 2026)",
+            "Hacktoberfest 2025 — Super Contributor (6+ accepted PRs) (Oct 2025)",
+            "Code4EdTech Hackathon 2025 — Participant (Sep 2025)"
         ],
         certifications: [
             "Data Structures - Coursera",
@@ -156,24 +157,24 @@ document.addEventListener('DOMContentLoaded', function() {
         }
 
         // Specific project inquiries
-        if (message.includes('trainer') || message.includes('search app')) {
+        if (message.includes('github portfolio') || message.includes('portfolio analyzer')) {
             const project = portfolioData.projects[0];
-            return `**${project.name}** is a full-stack web application featuring:\n• Django REST API backend with token-based authentication\n• React frontend with routing and state management\n• CRUD operations for trainer management\n• Search filters and form validation\n• Clean, professional UI\n\n🔗 GitHub: ${project.github}`;
+            return `**${project.name}** is an AI-inspired developer evaluation tool that:\n• Analyzes GitHub profiles using recruiter-style metrics\n• Scores repository quality, contribution consistency & tech stack diversity\n• Suggests improvements for stronger hiring visibility\n• Automates profile parsing and structured feedback generation\n\n🔗 GitHub: ${project.github}`;
+        }
+
+        if (message.includes('empathy encryption') || message.includes('password')) {
+            const project = portfolioData.projects[1];
+            return `**${project.name}** is a full-stack security tool that:\n• Evaluates password strength using entropy-based scoring\n• Provides real-time feedback and security guidance\n• Features a user-friendly interactive UI\n• Helps improve password hygiene with human-centered design\n\n🔗 GitHub: ${project.github}`;
+        }
+
+        if (message.includes('trainer') || message.includes('search app')) {
+            const project = portfolioData.projects[2];
+            return `**${project.name}** is a full-stack web application featuring:\n• RESTful APIs to manage and retrieve trainer data\n• Dynamic search functionality\n• React frontend integrated with Django backend\n• Responsive UI with optimized API calls\n\n🔗 GitHub: ${project.github}`;
         }
 
         if (message.includes('scriptly')) {
-            const project = portfolioData.projects[1];
-            return `**${project.name}** is an interactive web IDE that provides:\n• Live preview of HTML, CSS, and JavaScript code\n• Real-time feedback loop\n• User-friendly interface for developers\n• Enhanced developer productivity\n\n🔗 GitHub: ${project.github}`;
-        }
-
-        if (message.includes('pyra') || message.includes('ai assistant')) {
-            const project = portfolioData.projects[2];
-            return `**${project.name}** is a Python-based virtual assistant with:\n• Voice recognition and text-to-speech\n• Google/YouTube/Wikipedia search integration\n• System commands and app launches\n• Entertainment features (jokes, etc.)\n• Built with SpeechRecognition, pyttsx3, and Tkinter\n\n🔗 GitHub: ${project.github}`;
-        }
-
-        if (message.includes('transit') || message.includes('optimizer')) {
             const project = portfolioData.projects[3];
-            return `**${project.name}** is a Java CLI tool that:\n• Optimizes transit routes using heuristics\n• Considers travel time, fare, and capacity\n• Demonstrates OOP design patterns\n• Shows algorithmic problem-solving skills\n\n🔗 GitHub: ${project.github}`;
+            return `**${project.name}** is a browser-based interactive IDE that provides:\n• Real-time code preview functionality\n• Dynamic rendering and live editing features\n• Clean, focused UI/UX design\n• Efficient client-side performance\n\n🔗 GitHub: ${project.github}`;
         }
 
         // Achievements inquiries
@@ -190,6 +191,11 @@ document.addEventListener('DOMContentLoaded', function() {
             return `Shreeja earned the **Hacktoberfest 2025 Super Contributor** badge by:\n• Submitting 6+ accepted pull requests\n• Contributing to various open-source projects\n• Demonstrating version control proficiency\n• Collaborating in global communities\n\nThis shows her commitment to open-source development and collaboration!`;
         }
 
+        // UnsaidTalks
+        if (message.includes('unsaidtalks') || message.includes('rank 1') || message.includes('top 10')) {
+            return `Shreeja has two outstanding results from UnsaidTalks hackathons:\n\n🥇 **Empathy Encryption Hackathon — Top 1 Rank** (Feb 2026)\n• Designed an AI-driven solution balancing security, empathy, and usability.\n\n🏆 **GitHub Analyzer Hackathon — Top 10 Rank** (Feb 2026)\n• Built automated GitHub profile evaluation with innovation and analytical accuracy.\n\nThese wins highlight her problem-solving skills and ability to deliver high-impact solutions!`;
+        }
+
         // Education inquiries
         if (message.includes('education') || message.includes('college') || message.includes('university') || message.includes('gpa')) {
             return `🎓 **Education:**\n${portfolioData.education.degree}\n${portfolioData.education.institution}\nGPA: ${portfolioData.education.gpa}\nGraduating in ${portfolioData.education.graduation}\n\nShe also holds certifications in:\n• Data Structures (Coursera)\n• Python (GeeksforGeeks)\n• Version Control with Git (Coursera)`;
@@ -202,7 +208,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
         // Experience level
         if (message.includes('experience') || message.includes('intern')) {
-            return `Shreeja is currently seeking **SDE Intern** opportunities. She has:\n• Strong foundation in full-stack development\n• Multiple project implementations\n• Hackathon experience\n• Open-source contributions\n• Academic excellence (9.13 GPA)\n\nShe's eager to contribute to scalable software solutions while learning modern engineering practices!`;
+            return `Shreeja is currently seeking **SDE Intern** opportunities. She has:\n• Strong foundation in full-stack development\n• Multiple project implementations\n• Hackathon achievements (Top 1 and Top 10 rankings)\n• Open-source contributions\n• Academic excellence (9.29 GPA)\n\nShe's eager to contribute to scalable software solutions while learning modern engineering practices!`;
         }
 
         // Work preference
@@ -212,7 +218,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
         // Strengths
         if (message.includes('strength') || message.includes('best at') || message.includes('good at')) {
-            return `Shreeja's key strengths include:\n1) Full-stack development (Django + React)\n2) Problem-solving and algorithmic thinking\n3) Building RESTful APIs\n4) UI/UX implementation\n5) Quick learning and adaptability\n6) Team collaboration (hackathons)\n7) Open-source contribution\n\nHer 9.13 GPA and multiple successful projects demonstrate her technical excellence!`;
+            return `Shreeja's key strengths include:\n1) Full-stack development (Django + React)\n2) Problem-solving and algorithmic thinking\n3) Building RESTful APIs\n4) UI/UX implementation\n5) Quick learning and adaptability\n6) Team collaboration (hackathons)\n7) Open-source contribution\n\nHer 9.29 GPA and multiple successful projects demonstrate her technical excellence!`;
         }
 
         // Resume
