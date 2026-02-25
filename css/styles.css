@@ -1684,10 +1684,12 @@ body {
     .hero-content {
         grid-template-columns: 1fr;
         text-align: center;
+        gap: 40px;
     }
     .hero-image {
-        max-width: 400px;
-        margin: 40px auto 0;
+        max-width: 360px;
+        margin: 0 auto;
+        order: -1;
     }
     .hero-buttons {
         justify-content: center;
@@ -1695,11 +1697,24 @@ body {
     .hero-socials {
         justify-content: center;
     }
+    .hero-description {
+        max-width: 600px;
+        margin-left: auto;
+        margin-right: auto;
+    }
     .about-content {
         grid-template-columns: 1fr;
+        gap: 40px;
     }
     .contact-content {
         grid-template-columns: 1fr;
+        gap: 40px;
+    }
+    .projects-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .skills-grid {
+        grid-template-columns: repeat(2, 1fr);
     }
 }
 
@@ -1707,22 +1722,38 @@ body {
     :root {
         --section-padding: 60px;
     }
+
+    /* --- Navigation --- */
     .hero {
-        padding: 60px 15px 40px;
+        padding: 80px 15px 40px;
+    }
+    .nav-container {
+        padding: 15px 20px;
     }
     .nav-menu {
         position: fixed;
-        top: 80px;
+        top: 70px;
         left: -100%;
         width: 100%;
         background: var(--bg-color);
         flex-direction: column;
-        padding: 40px 20px;
-        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        padding: 30px 20px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
         transition: left 0.3s ease;
+        z-index: 999;
+        gap: 8px;
     }
     .nav-menu.active {
         left: 0;
+    }
+    .nav-link {
+        font-size: 17px;
+        padding: 10px 0;
+        border-bottom: 1px solid var(--border-color);
+        width: 100%;
+    }
+    .nav-link:last-child {
+        border-bottom: none;
     }
     .nav-toggle {
         display: flex;
@@ -1736,9 +1767,27 @@ body {
     .nav-toggle.active span:nth-child(3) {
         transform: rotate(-45deg) translate(7px, -7px);
     }
+
+    /* --- Hero --- */
+    .hero-content {
+        grid-template-columns: 1fr;
+        text-align: center;
+        gap: 30px;
+        padding-top: 20px;
+    }
+    .hero-image {
+        max-width: 280px;
+        margin: 0 auto;
+        order: -1;
+    }
+    .image-frame {
+        width: 260px !important;
+        height: 260px !important;
+    }
     .hero-buttons {
         flex-direction: column;
         align-items: center;
+        gap: 12px;
     }
     .btn {
         width: 100%;
@@ -1746,66 +1795,309 @@ body {
         justify-content: center;
         padding: 12px 24px;
     }
+    .hero-socials {
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 10px;
+    }
+
+    /* --- Section Header --- */
+    .section-header {
+        margin-bottom: 40px;
+    }
+    .section-title {
+        font-size: 34px;
+    }
+
+    /* --- About --- */
+    .about-content {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
     .about-stats {
         grid-template-columns: repeat(2, 1fr);
+        gap: 15px;
     }
+    .stat-item {
+        padding: 20px 15px;
+    }
+    .about-education {
+        order: -1;
+    }
+    .education-card {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    /* --- Skills --- */
     .skills-grid {
         grid-template-columns: 1fr;
+        gap: 16px;
     }
+    .skill-category {
+        padding: 20px;
+    }
+    .skill-tags {
+        gap: 6px;
+    }
+
+    /* --- Projects --- */
     .projects-grid {
         grid-template-columns: 1fr;
+        gap: 20px;
+    }
+    .project-card {
+        max-width: 100%;
+    }
+
+    /* --- Timeline --- */
+    .timeline {
+        padding-left: 0;
     }
     .timeline::before {
-        left: 30px;
+        left: 18px;
     }
     .timeline-dot {
-        left: 30px;
+        left: 18px;
+        width: 14px;
+        height: 14px;
+    }
+    .timeline-item {
+        padding-left: 50px;
     }
     .timeline-content {
-        width: calc(100% - 80px);
-        margin-left: 60px !important;
+        width: 100% !important;
+        margin-left: 0 !important;
+        margin-right: 0 !important;
         text-align: left !important;
+        padding: 18px;
     }
+    .timeline-content h3 {
+        font-size: 16px;
+    }
+
+    /* --- Contact --- */
+    .contact-content {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+    .contact-details {
+        gap: 15px;
+    }
+    .contact-item {
+        gap: 12px;
+    }
+    .social-links {
+        flex-wrap: wrap;
+        gap: 10px;
+    }
+
+    /* --- Playground / Server Room --- */
+    .playground {
+        padding: 14px;
+    }
+    .sr-controls {
+        flex-direction: column;
+        gap: 8px;
+    }
+    .sr-controls input,
+    .sr-controls button {
+        width: 100%;
+    }
+    .sr-prompt {
+        font-size: 13px;
+        padding: 10px;
+        overflow-x: auto;
+    }
+
+    /* --- Creative Work --- */
+    .creative-content {
+        padding: 24px 20px;
+    }
+
+    /* --- Certifications --- */
+    .certifications {
+        padding: 20px;
+    }
+    .cert-item {
+        gap: 10px;
+    }
+
+    /* --- Hide custom cursor on touch devices --- */
     .custom-cursor,
     .cursor-follower {
         display: none;
     }
+
+    /* --- Chatbot --- */
+    .chatbot-container {
+        bottom: 16px;
+        right: 16px;
+    }
+    .chatbot-window {
+        width: calc(100vw - 32px);
+        right: 0;
+        bottom: 75px;
+        height: calc(100dvh - 120px);
+        max-height: 560px;
+    }
+    .chatbot-suggestions {
+        padding: 10px 14px;
+        gap: 6px;
+    }
+    .suggestion-btn {
+        font-size: 11px;
+        padding: 6px 11px;
+    }
+    .chatbot-input {
+        padding: 10px 14px;
+    }
 }
 
 @media (max-width: 480px) {
+    :root {
+        --section-padding: 50px;
+    }
+
+    /* --- Hero --- */
     .hero {
-        padding: 40px 10px 30px;
-    }
-    .hero-name {
-        font-size: 40px;
-    }
-    .hero-title {
-        font-size: 20px;
+        padding: 75px 12px 30px;
     }
     .hero-greeting {
-        font-size: 16px;
+        font-size: 15px;
+    }
+    .hero-name {
+        font-size: 38px;
+        line-height: 1.1;
+    }
+    .hero-title {
+        font-size: 18px;
     }
     .hero-description {
-        font-size: 16px;
+        font-size: 15px;
         max-width: none;
+    }
+    .hero-image {
+        max-width: 220px;
+    }
+    .image-frame {
+        width: 220px !important;
+        height: 220px !important;
     }
     .hero-buttons .btn {
         padding: 12px 20px;
+        font-size: 14px;
     }
     .hero-socials {
-        gap: 10px;
+        gap: 8px;
     }
-    .hero-image .image-frame {
-        width: 250px;
-        height: 250px;
+    .social-link {
+        width: 38px;
+        height: 38px;
+        font-size: 15px;
     }
+
+    /* --- Section headers --- */
     .section-title {
+        font-size: 28px;
+    }
+    .section-number {
+        font-size: 14px;
+    }
+    .section-header {
+        margin-bottom: 30px;
+    }
+
+    /* --- About Stats: single column on very small screens --- */
+    .about-stats {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
+    }
+    .stat-number {
+        font-size: 28px;
+    }
+
+    /* --- Projects --- */
+    .project-content {
+        padding: 18px 16px;
+    }
+    .project-title {
+        font-size: 18px;
+    }
+    .project-tags {
+        gap: 5px;
+    }
+    .project-tag {
+        font-size: 11px;
+        padding: 3px 8px;
+    }
+    .project-features li {
+        font-size: 13px;
+    }
+
+    /* --- Skills --- */
+    .skill-tags {
+        gap: 5px;
+    }
+    .skill-tag {
+        font-size: 12px;
+        padding: 4px 10px;
+    }
+
+    /* --- Timeline --- */
+    .timeline-content h3 {
+        font-size: 15px;
+    }
+    .timeline-content p {
+        font-size: 13px;
+    }
+    .achievement-badge {
+        font-size: 12px;
+        padding: 5px 10px;
+    }
+    .timeline-date {
+        font-size: 12px;
+    }
+
+    /* --- Contact --- */
+    .contact-form {
+        padding: 24px 16px;
+    }
+    .contact-info h3 {
+        font-size: 22px;
+    }
+
+    /* --- Chatbot full-screen feel on mobile --- */
+    .chatbot-window {
+        width: 100vw;
+        right: -16px;
+        border-radius: 16px 16px 0 0;
+        bottom: 70px;
+    }
+
+    /* --- Footer --- */
+    .footer-content p {
+        font-size: 12px;
+    }
+
+    /* --- Nav brand smaller --- */
+    .nav-brand {
+        font-size: 20px;
+    }
+}
+
+@media (max-width: 360px) {
+    .hero-name {
         font-size: 32px;
     }
     .about-stats {
-        grid-template-columns: 1fr;
+        grid-template-columns: 1fr 1fr;
     }
-    .contact-form {
-        padding: 30px 20px;
+    .btn {
+        font-size: 13px;
+        padding: 10px 16px;
+    }
+    .section-title {
+        font-size: 24px;
     }
 }
