@@ -93,33 +93,9 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     window.addEventListener('scroll', highlightNavigation);
 
-    // Theme Toggle
-    const themeToggle = document.getElementById('theme-toggle');
-    const themeIcon = themeToggle.querySelector('i');
-    const currentTheme = localStorage.getItem('theme') || 'light';
-    document.documentElement.setAttribute('data-theme', currentTheme);
-    if (currentTheme === 'dark') {
-        themeIcon.classList.remove('fa-moon');
-        themeIcon.classList.add('fa-sun');
-    }
-    themeToggle.addEventListener('click', () => {
-        let theme = document.documentElement.getAttribute('data-theme');
-        if (theme === 'light') {
-            document.documentElement.setAttribute('data-theme', 'dark');
-            localStorage.setItem('theme', 'dark');
-            themeIcon.classList.remove('fa-moon');
-            themeIcon.classList.add('fa-sun');
-        } else {
-            document.documentElement.setAttribute('data-theme', 'light');
-            localStorage.setItem('theme', 'light');
-            themeIcon.classList.remove('fa-sun');
-            themeIcon.classList.add('fa-moon');
-        }
-    });
-
     // Typewriter Effect
     const typewriterElement = document.getElementById('typewriter');
-    const texts = ['Full-Stack Developer', 'Problem Solver', 'AI Enthusiast', 'Open Source Contributor'];
+    const texts = ['Backend Software Engineer', 'Java Developer', 'AI Tool Builder', 'Open Source Contributor'];
     let textIndex = 0, charIndex = 0, isDeleting = false, typeSpeed = 100;
     
     function typeWriter() {
@@ -447,7 +423,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     try { playSuccessTone(); } catch (e) { /* ignore audio errors */ }
                     saveProgress();
                 } else {
-                    feedbackEl.textContent = 'Incorrect — try again or ask for a hint.';
+                    feedbackEl.textContent = 'Incorrect - try again or ask for a hint.';
                     feedbackEl.style.color = 'var(--text-secondary)';
                 }
             });
@@ -513,7 +489,7 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         });
 
-        // Coding challenges removed — kept leaderboard rendering earlier.
+        // Coding challenges removed; kept leaderboard rendering earlier.
 
     // Parallax Effect
     const heroBackground = document.querySelector('.hero-background');
@@ -582,7 +558,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     // Console Easter Egg
-    console.log('%c👋 Hey there!', 'font-size: 20px; font-weight: bold; color: #6366f1;');
-    console.log('%cLooking at the code? I like your curiosity!', 'font-size: 14px; color: #64748b;');
-    console.log('%cLet\'s connect: itshreeja@gmail.com', 'font-size: 14px; color: #6366f1;');
+    console.log('%cHey there!', 'font-size: 20px; font-weight: bold; color: #49111C;');
+    console.log('%cLooking at the code? I like your curiosity!', 'font-size: 14px; color: #5E503F;');
+    console.log('%cLet\'s connect: itshreeja@gmail.com', 'font-size: 14px; color: #49111C;');
 });

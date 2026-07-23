@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Blogs | Shreeja Hebbar</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family:'DM Sans',sans-serif;
+    background:var(--bg-color);
+    color:var(--text-primary);
+    line-height:1.7;
+    overflow-x:hidden;
+}
+
+/* Background Orbs */
+body::before,
+body::after{
+    content:"";
+    position:fixed;
+    width:350px;
+    height:350px;
+    border-radius:50%;
+    filter:blur(90px);
+    z-index:-1;
+    animation:float 12s ease-in-out infinite;
+}
+
+body::before{
+    background:rgba(73,17,28,.12);
+    top:-120px;
+    left:-120px;
+}
+
+body::after{
+    background:rgba(169,146,125,.18);
+    bottom:-120px;
+    right:-120px;
+    animation-delay:5s;
+}
+
+@keyframes float{
+    0%,100%{
+        transform:translate(0,0);
+    }
+    50%{
+        transform:translate(40px,30px);
+    }
+}
+
+a{
+    text-decoration:none;
+    color:inherit;
+}
+
+.container{
+    width:90%;
+    max-width:1200px;
+    margin:auto;
+}
+
+/* Hero */
+
+.hero{
+    padding:130px 0 80px;
+    text-align:center;
+    animation:fadeUp 1s ease;
+}
+
+.hero h1{
+    font-family:'Playfair Display',serif;
+    font-size:4rem;
+    color:var(--primary-color);
+    margin-bottom:20px;
+}
+
+.hero p{
+    color:var(--text-secondary);
+    max-width:700px;
+    margin:auto;
+    font-size:1.05rem;
+}
+
+.back-btn{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    margin-top:35px;
+    padding:14px 28px;
+    border-radius:50px;
+    background:linear-gradient(135deg,var(--primary-color),var(--secondary-color));
+    color:#2a1919;
+    transition:.35s;
+    box-shadow:0 12px 30px rgba(73,17,28,.18);
+}
+
+.back-btn:hover{
+    transform:translateY(-5px);
+    box-shadow:0 18px 45px rgba(73,17,28,.28);
+}
+
+/* Blogs */
+
+.blog-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(330px,1fr));
+    gap:30px;
+    margin:70px 0 90px;
+}
+
+.blog-card{
+    background:rgba(255,255,255,.55);
+    backdrop-filter:blur(12px);
+    border:1px solid rgba(169,146,125,.3);
+    border-radius:22px;
+    padding:30px;
+    transition:.4s;
+    position:relative;
+    overflow:hidden;
+    animation:fadeUp .8s ease forwards;
+}
+
+.blog-card::before{
+    content:"";
+    position:absolute;
+    top:0;
+    left:0;
+    width:100%;
+    height:4px;
+    background:linear-gradient(90deg,var(--primary-color),var(--secondary-color));
+    transform:scaleX(0);
+    transform-origin:left;
+    transition:.4s;
+}
+
+.blog-card:hover::before{
+    transform:scaleX(1);
+}
+
+.blog-card:hover{
+    transform:translateY(-10px);
+    box-shadow:0 25px 50px rgba(73,17,28,.15);
+}
+
+/* Tag */
+
+.tag{
+    display:inline-block;
+    background:rgba(73,17,28,.08);
+    color:var(--primary-color);
+    padding:7px 15px;
+    border-radius:50px;
+    font-size:.8rem;
+    font-weight:700;
+    margin-bottom:20px;
+    transition:.3s;
+}
+
+.blog-card:hover .tag{
+    transform:translateX(6px);
+}
+
+/* Headings */
+
+.blog-card h2{
+    font-family:'Playfair Display',serif;
+    font-size:1.7rem;
+    margin-bottom:15px;
+    color:var(--text-primary);
+}
+
+.blog-card p{
+    color:var(--text-secondary);
+    margin-bottom:25px;
+}
+
+/* Meta */
+
+.meta{
+    display:flex;
+    justify-content:space-between;
+    color:var(--text-muted);
+    font-size:.9rem;
+    margin-bottom:20px;
+}
+
+/* Button */
+
+.read-btn{
+    display:inline-flex;
+    align-items:center;
+    gap:10px;
+    color:var(--primary-color);
+    font-weight:700;
+    transition:.3s;
+}
+
+.read-btn:hover{
+    gap:16px;
+}
+
+/* Footer */
+
+footer{
+    text-align:center;
+    padding:45px;
+    color:var(--text-secondary);
+    border-top:1px solid rgba(169,146,125,.3);
+}
+
+/* Animation */
+
+@keyframes fadeUp{
+    from{
+        opacity:0;
+        transform:translateY(30px);
+    }
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+</style>
+
+</head>
+
+<body>
+
+<section class="hero">
+
+<div class="container">
+
+<h1>Writing & Engineering Notes</h1>
+
+<p>
+
+I enjoy documenting what I build, what I learn, and the experiences that shape my journey as a software engineer. These articles cover backend engineering, deployment, hackathons, career insights, and lessons learned while building real-world projects.
+
+</p>
+
+<a href="index.html#contact" class="back-btn">
+
+<i class="fas fa-arrow-left"></i>
+
+Back to Portfolio
+
+</a>
+
+</div>
+
+</section>
+
+<div class="container">
+
+<div class="blog-grid">
+
+<div class="blog-card">
+
+<span class="tag">Deployment</span>
+
+<h2>How Vercel and GitHub Pages Give You Free HTTPS Out of the Box</h2>
+
+<div class="meta">
+
+<span><i class="far fa-clock"></i> 5 min read</span>
+
+<span>Web Development</span>
+
+</div>
+
+<p>
+
+Understand how modern hosting platforms automatically provide SSL certificates, HTTPS, and secure deployments without any manual configuration.
+
+</p>
+
+<a href="https://medium.com/@hebbarshree855/how-vercel-and-github-pages-give-you-free-https-out-of-the-box-538d37dccdcc"
+target="_blank"
+class="read-btn">
+
+Read on Medium
+
+<i class="fas fa-arrow-right"></i>
+
+</a>
+
+</div>
+
+<div class="blog-card">
+
+<span class="tag">Career</span>
+
+<h2>What I Learned About Building an ATS-Friendly Resume</h2>
+
+<div class="meta">
+
+<span><i class="far fa-clock"></i> 6 min read</span>
+
+<span>Career Growth</span>
+
+</div>
+
+<p>
+
+Key resume lessons from Infosys Springboard that helped me understand how recruiters and ATS systems evaluate engineering resumes.
+
+</p>
+
+<a href="https://medium.com/@hebbarshree855/what-i-learned-about-building-an-ats-friendly-resume-from-infosys-springboard-eb9549bf2eea"
+target="_blank"
+class="read-btn">
+
+Read on Medium
+
+<i class="fas fa-arrow-right"></i>
+
+</a>
+
+</div>
+
+<div class="blog-card">
+
+<span class="tag">Experience</span>
+
+<h2>I Thought It Was Just an Event Until Sabre Corporation Changed How I See Technology</h2>
+
+<div class="meta">
+
+<span><i class="far fa-clock"></i> 4 min read</span>
+
+<span>Experience</span>
+
+</div>
+
+<p>
+
+A reflection on an industry event that changed my perspective on software engineering, innovation, and building impactful technology.
+
+</p>
+
+<a href="https://medium.com/@hebbarshree855/i-thought-it-was-just-an-event-until-sabre-corporation-changed-how-i-see-technology-7c0b00592110"
+target="_blank"
+class="read-btn">
+
+Read on Medium
+
+<i class="fas fa-arrow-right"></i>
+
+</a>
+
+</div>
+
+<div class="blog-card">
+
+<span class="tag">Hackathon</span>
+
+<h2>From Code Repository to Recruiter-Ready Proof</h2>
+
+<div class="meta">
+
+<span><i class="far fa-clock"></i> 7 min read</span>
+
+<span>GitHub</span>
+
+</div>
+
+<p>
+
+How I built a GitHub evaluation platform, transformed repository insights into recruiter-ready reports, and secured a Top 10 finish in a hackathon.
+
+</p>
+
+<a href="https://medium.com/@hebbarshree855/from-code-repository-to-recruiter-ready-proof-how-i-ranked-top-10-in-a-github-evaluation-hackathon-0cc0d08b694b"
+target="_blank"
+class="read-btn">
+
+Read on Medium
+
+<i class="fas fa-arrow-right"></i>
+
+</a>
+
+</div>
+
+<div class="blog-card">
+
+<span class="tag">Hackathon</span>
+
+<h2>From Idea to Regional Finale</h2>
+
+<div class="meta">
+
+<span><i class="far fa-clock"></i> 6 min read</span>
+
+<span>Journey</span>
+
+</div>
+
+<p>
+
+The story behind our team's journey from brainstorming an idea to becoming South Asia Regional Finalists in a global sustainability challenge.
+
+</p>
+
+<a href="https://medium.com/@hebbarshree855/from-idea-to-regional-finale-our-online-hackathon-experience-74a56175fba0"
+target="_blank"
+class="read-btn">
+
+Read on Medium
+
+<i class="fas fa-arrow-right"></i>
+
+</a>
+
+</div>
+
+</div>
+
+</div>
+
+<footer>
+
+© 2026 Shreeja Hebbar 
+
+</footer>
+
+</body>
+
+</html>
